@@ -39,5 +39,4 @@ public class LocalLinkTagRuleTest extends AbstractLocalRuleTest<LocalLinkTagRule
   protected LocalLinkTagRule newLocalRule() {
     return new LocalLinkTagRule();
   }
-
 }

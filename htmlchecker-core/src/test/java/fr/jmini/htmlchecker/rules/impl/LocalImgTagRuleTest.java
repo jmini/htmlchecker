@@ -23,8 +23,8 @@ public class LocalImgTagRuleTest extends AbstractLocalRuleTest<LocalImgTagRule> 
 
     for (LintError lintError : lintErrors) {
       switch (lintError.getLineNumber()) {
-        case 16:
-          assertLintError(lintError, PAGE_NAME, 16, "File 'img/pict2.png' (relative to 'index.html') referenced by the 'src' attribute in the 'img' tag is missing");
+        case 21:
+          assertLintError(lintError, PAGE_NAME, 21, "File 'img/pict2.png' (relative to 'index.html') referenced by the 'src' attribute in the 'img' tag is missing");
           break;
         default:
           fail("Did not expect LintError " + lintError);
@@ -32,9 +32,16 @@ public class LocalImgTagRuleTest extends AbstractLocalRuleTest<LocalImgTagRule> 
     }
   }
 
+  @Test
+  public void testGetLintErrorsWithMalformedImgTags() throws Exception {
+    setupRule();
+    File file = new File(Resources.getResource("malformed-img.html").getPath());
+    List<LintError> lintErrors = rule.getLintErrors(file);
+    assertThat(lintErrors).hasSize(0);
+  }
+
   @Override
   protected LocalImgTagRule newLocalRule() {
     return new LocalImgTagRule();
   }
-
 }

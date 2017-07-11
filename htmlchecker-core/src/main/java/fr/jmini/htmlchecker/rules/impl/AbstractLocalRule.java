@@ -38,7 +38,7 @@ public abstract class AbstractLocalRule extends AbstractJerichoRule {
 
   protected Optional<LintError> checkAndcreateLintError(File file, Element element) {
     String localPath = computeLocalPath(element);
-    if (HtmlUtility.isExternalPath(localPath)) {
+    if (localPath == null || localPath.isEmpty() || HtmlUtility.isExternalPath(localPath)) {
       return Optional.empty();
     }
     File localFile = new File(file.getParentFile(), localPath);
