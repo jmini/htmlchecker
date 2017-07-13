@@ -23,20 +23,20 @@ public class LocalATagRuleTest extends AbstractLocalRuleTest<LocalATagRule> {
 
     for (LintError lintError : lintErrors) {
       switch (lintError.getLineNumber()) {
-        case 13:
-          assertLintError(lintError, PAGE_NAME, 13, "File 'page2.html' (relative to 'index.html') referenced by the 'href' attribute in the 'a' tag is missing");
-          break;
         case 15:
-          assertLintError(lintError, PAGE_NAME, 15, "Anchor 'p2' referenced in the 'href' attribute in the 'a' tag is missing in file  'index.html'");
-          break;
-        case 16:
-          assertLintError(lintError, PAGE_NAME, 16, "Anchor 'abc' referenced in the 'href' attribute in the 'a' tag is missing in file  'page1.html' (relative to 'index.html')");
+          assertLintError(lintError, PAGE_NAME, 15, "File 'page2.html' (relative to 'index.html') referenced by the 'href' attribute in the 'a' tag is missing");
           break;
         case 17:
-          assertLintError(lintError, PAGE_NAME, 17, "Anchor 'xyz' referenced in the 'href' attribute in the 'a' tag is missing in file  'page1.html' (relative to 'index.html')");
+          assertLintError(lintError, PAGE_NAME, 17, "Anchor 'p2' referenced in the 'href' attribute in the 'a' tag is missing in file  'index.html'");
           break;
         case 18:
-          assertLintError(lintError, PAGE_NAME, 18, "File 'page2.html' (relative to 'index.html') referenced by the 'href' attribute in the 'a' tag is missing");
+          assertLintError(lintError, PAGE_NAME, 18, "Anchor 'abc' referenced in the 'href' attribute in the 'a' tag is missing in file  'page1.html' (relative to 'index.html')");
+          break;
+        case 19:
+          assertLintError(lintError, PAGE_NAME, 19, "Anchor 'xyz' referenced in the 'href' attribute in the 'a' tag is missing in file  'page1.html' (relative to 'index.html')");
+          break;
+        case 20:
+          assertLintError(lintError, PAGE_NAME, 20, "File 'page2.html' (relative to 'index.html') referenced by the 'href' attribute in the 'a' tag is missing");
           break;
         default:
           fail("Did not expect LintError " + lintError);

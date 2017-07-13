@@ -27,7 +27,7 @@ public class JerichoHtmlUtilityTest {
 
   @Test
   public void testIsExternalPathANameExist() throws Exception {
-    Source source = new Source(createHtml("<p>body <a name=\"abc\" /></p>"));
+    Source source = new Source(createHtml("<p>body <a name=\"abc\"></a></p>"));
     assertEquals(true, JerichoHtmlUtility.containsElementWithId(source, "abc"));
   }
 

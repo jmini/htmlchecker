@@ -11,7 +11,7 @@ import org.junit.Test;
 import com.google.common.io.Resources;
 import com.selesse.jxlint.model.rules.LintError;
 
-public class LocalImgTagRuleTest extends AbstractLocalRuleTest<LocalImgTagRule> {
+public class LocalScriptTagRuleTest extends AbstractLocalRuleTest<LocalScriptTagRule> {
 
   @Test
   public void testGetLintErrors() throws Exception {
@@ -23,8 +23,8 @@ public class LocalImgTagRuleTest extends AbstractLocalRuleTest<LocalImgTagRule> 
 
     for (LintError lintError : lintErrors) {
       switch (lintError.getLineNumber()) {
-        case 23:
-          assertLintError(lintError, PAGE_NAME, 23, "File 'img/pict2.png' (relative to 'index.html') referenced by the 'src' attribute in the 'img' tag is missing");
+        case 8:
+          assertLintError(lintError, PAGE_NAME, 8, "File 'js/script2.js' (relative to 'index.html') referenced by the 'src' attribute in the 'script' tag is missing");
           break;
         default:
           fail("Did not expect LintError " + lintError);
@@ -32,16 +32,8 @@ public class LocalImgTagRuleTest extends AbstractLocalRuleTest<LocalImgTagRule> 
     }
   }
 
-  @Test
-  public void testGetLintErrorsWithMalformedImgTags() throws Exception {
-    setupRule();
-    File file = new File(Resources.getResource("malformed-img.html").getPath());
-    List<LintError> lintErrors = rule.getLintErrors(file);
-    assertThat(lintErrors).hasSize(0);
-  }
-
   @Override
-  protected LocalImgTagRule newLocalRule() {
-    return new LocalImgTagRule();
+  protected LocalScriptTagRule newLocalRule() {
+    return new LocalScriptTagRule();
   }
 }
