@@ -27,13 +27,8 @@ public abstract class AbstractLocalRule extends AbstractJerichoRule {
   @Override
   protected List<LintError> computeLintErrors(Source source, File file) {
     return source.getAllElements(tagName).stream()
-        .filter(e -> isElementRelevant(e))
         .flatMap(e -> checkAndcreateLintError(file, e).map(Stream::of).orElseGet(Stream::empty))
         .collect(Collectors.toList());
-  }
-
-  protected boolean isElementRelevant(Element e) {
-    return true;
   }
 
   protected Optional<LintError> checkAndcreateLintError(File file, Element element) {
