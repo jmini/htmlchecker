@@ -1,0 +1,43 @@
+//tag::vardef[]
+:gh-repo-owner: jmini
+:gh-repo-name: htmlchecker
+
+:project-name: htmlchecker
+:git-branch: master
+:twitter-handle: j2r2b
+:license: https://opensource.org/licenses/MIT
+:license-name: MIT License
+
+:git-repository: {gh-repo-owner}/{gh-repo-name}
+:homepage: https://{gh-repo-owner}.github.io/{gh-repo-name}
+:issues: https://github.com/{git-repository}/issues
+//end::vardef[]
+
+//tag::header[]
+= {project-name}
+Checker for HTML files
+//end::header[]
+
+//tag::description[]
+== Description
+
+Html checker is a java program that checks the content of your HTML pages and produces a report.
+It focuses on the content (broken link) and not on the form (is your HTML well-formed?).
+It is available as a cli tool or as a maven plugin.
+
+//end::description[]
+Read more on the link:{homepage}[project home page].
+
+//tag::contact-section[]
+== Get in touch
+
+Use the link:{issues}[{project-name} issue tracker] on GitHub.
+
+You can also contact me on Twitter: link:https://twitter.com/{twitter-handle}[@{twitter-handle}]
+//end::contact-section[]
+
+//tag::license-section[]
+== License
+
+link:{license}[{license-name}]
+//end::license-section[]
