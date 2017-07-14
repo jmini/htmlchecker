@@ -26,11 +26,7 @@ public class LocalATagRule extends AbstractLocalRule {
   @Override
   protected String computeLocalPath(Element element) {
     String path = super.computeLocalPath(element);
-    int index = path.lastIndexOf("#");
-    if (index > -1) {
-      return path.substring(0, index);
-    }
-    return path;
+    return HtmlUtility.removeAnchor(path);
   }
 
   @Override
@@ -69,12 +65,8 @@ public class LocalATagRule extends AbstractLocalRule {
       if (source != null && !JerichoHtmlUtility.containsElementWithId(source, id)) {
         String errorMessage =
             "Anchor '" + id + "' referenced in the 'href' attribute in the 'a' tag is missing in file " + fileNameSupplier.get();
-        return Optional.of(LintError.with(this, file)
-            .andErrorMessage(errorMessage)
-            .andLineNumber(element.getRowColumnVector().getRow())
-            .create());
+        return createLintError(file, errorMessage, element.getRowColumnVector().getRow());
       }
-
     }
     return Optional.empty();
   }

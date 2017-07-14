@@ -98,4 +98,14 @@ public class HtmlUtilityTest {
     assertEquals(false, HtmlUtility.isExternalPath("site/folder/page1.html"));
     assertEquals(false, HtmlUtility.isExternalPath("/archive/page1.html"));
   }
+
+  @Test
+  public void testRemoveAnchor() throws Exception {
+    assertEquals("/archive/page1.html", HtmlUtility.removeAnchor("/archive/page1.html"));
+    assertEquals("/archive/page1.html", HtmlUtility.removeAnchor("/archive/page1.html#anchor"));
+    assertEquals("/archive/page1.html", HtmlUtility.removeAnchor("/archive/page1.html#"));
+    assertEquals("", HtmlUtility.removeAnchor(""));
+    assertEquals(null, HtmlUtility.removeAnchor(null));
+
+  }
 }

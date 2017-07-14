@@ -40,10 +40,7 @@ public abstract class AbstractLocalRule extends AbstractJerichoRule {
     if (!localFile.exists()) {
       String errorMessage =
           "File '" + HtmlUtility.computeRelPath(file, localFile) + localFile.getName() + "' (relative to '" + file.getName() + "') referenced by the '" + attributeName + "' attribute in the '" + tagName + "' tag is missing";
-      return Optional.of(LintError.with(this, file)
-          .andErrorMessage(errorMessage)
-          .andLineNumber(element.getRowColumnVector().getRow())
-          .create());
+      return createLintError(file, errorMessage, element.getRowColumnVector().getRow());
     }
     return Optional.empty();
   }

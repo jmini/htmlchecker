@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,13 @@ public abstract class AbstractJerichoRule extends LintRule {
       LOG.error("Error reading file", e);
     }
     return Collections.emptyList();
+  }
+
+  protected Optional<LintError> createLintError(File file, String errorMessage, int lineNumber) {
+    return Optional.of(LintError.with(this, file)
+        .andErrorMessage(errorMessage)
+        .andLineNumber(lineNumber)
+        .create());
   }
 
   protected abstract List<LintError> computeLintErrors(Source source, File file);
