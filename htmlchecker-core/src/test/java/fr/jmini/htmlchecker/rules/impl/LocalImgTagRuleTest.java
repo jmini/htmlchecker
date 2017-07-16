@@ -41,7 +41,7 @@ public class LocalImgTagRuleTest extends AbstractLocalRuleTest<LocalImgTagRule> 
   }
 
   @Override
-  protected LocalImgTagRule newLocalRule() {
+  protected LocalImgTagRule newRule() {
     return new LocalImgTagRule();
   }
 }

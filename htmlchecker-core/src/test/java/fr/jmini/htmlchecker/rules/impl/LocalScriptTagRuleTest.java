@@ -32,8 +32,16 @@ public class LocalScriptTagRuleTest extends AbstractLocalRuleTest<LocalScriptTag
     }
   }
 
+  @Test
+  public void testGetLintErrorsWithMalformedImgTags() throws Exception {
+    setupRule();
+    File file = new File(Resources.getResource("malformed-script.html").getPath());
+    List<LintError> lintErrors = rule.getLintErrors(file);
+    assertThat(lintErrors).hasSize(0);
+  }
+
   @Override
-  protected LocalScriptTagRule newLocalRule() {
+  protected LocalScriptTagRule newRule() {
     return new LocalScriptTagRule();
   }
 }

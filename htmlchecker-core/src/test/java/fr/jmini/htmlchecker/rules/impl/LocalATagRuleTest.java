@@ -44,8 +44,16 @@ public class LocalATagRuleTest extends AbstractLocalRuleTest<LocalATagRule> {
     }
   }
 
+  @Test
+  public void testGetLintErrorsWithMalformedImgTags() throws Exception {
+    setupRule();
+    File file = new File(Resources.getResource("malformed-a.html").getPath());
+    List<LintError> lintErrors = rule.getLintErrors(file);
+    assertThat(lintErrors).hasSize(0);
+  }
+
   @Override
-  protected LocalATagRule newLocalRule() {
+  protected LocalATagRule newRule() {
     return new LocalATagRule();
   }
 }
