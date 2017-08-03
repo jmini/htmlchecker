@@ -1,4 +1,4 @@
-All local file referenced by the `href` attribute of the `<link>` tag should exist.
+All local file referenced by the `src` attribute of the `<script>` tag should exist.
 
 With this small site structure:
 
@@ -18,9 +18,10 @@ With this small site structure:
 If `index.html` contains this content:
 
     <head>
-        <link rel="stylesheet" href="css/style1.css">
-        <link rel="stylesheet" href="css/style2.css">
+        <!-- ... -->
+        <script type="text/javascript" src="js/script1.js"></script>
+        <script src="js/script2.js"></script>
         <!-- ... -->
     </head>
 
-The first `<link>` tag will...
+The first `<script>` tag will...
