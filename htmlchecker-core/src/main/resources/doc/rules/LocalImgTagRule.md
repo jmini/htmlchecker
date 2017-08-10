@@ -24,4 +24,8 @@ If `index.html` contains this content:
         <!-- ... -->
     </body>
 
-The first `<img>` tag will...
+The first `<img>` tag does not trigger any ERROR, because the file `img/pict1.png` exists.
+
+The second `<img>` tag triggers an ERROR, because there is no file `img/pict2.png`.
+
+Remote files (for example starting with `https://`) are not checked by this rule.

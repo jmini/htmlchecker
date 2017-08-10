@@ -10,6 +10,7 @@
     <modules>
         <module>docs</module>
         <module>htmlchecker-core</module>
+        <module>htmlchecker-cli</module>
     </modules>
 
 </project>
