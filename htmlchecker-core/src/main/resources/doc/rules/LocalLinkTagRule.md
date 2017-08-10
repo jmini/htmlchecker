@@ -23,4 +23,8 @@ If `index.html` contains this content:
         <!-- ... -->
     </head>
 
-The first `<link>` tag will...
+The first `<link>` tag does not trigger any ERROR, because the file `css/style1.css` exists.
+
+The second `<link>` tag triggers an ERROR, because there is no file `css/style2.css`.
+
+Remote files (for example starting with `https://`) are not checked by this rule.

@@ -24,4 +24,8 @@ If `index.html` contains this content:
         <!-- ... -->
     </head>
 
-The first `<script>` tag will...
+The first `<script>` tag does not trigger any ERROR, because the file `js/script1.js` exists.
+
+The second `<script>` tag triggers an ERROR, because there is no file `js/script2.js`.
+
+Remote files (for example starting with `https://`) are not checked by this rule.

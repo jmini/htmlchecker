@@ -1,7 +1,5 @@
 package fr.jmini.htmlchecker.rules.impl;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.io.File;
 import java.util.List;
 

@@ -1,6 +1,7 @@
 package fr.jmini.htmlchecker.rules.impl;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,10 +14,15 @@ import fr.jmini.htmlchecker.HtmlCheckerCategories;
 import fr.jmini.htmlchecker.HtmlUtility;
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.Source;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public abstract class AbstractRemoteRule extends AbstractJerichoRule {
   private String tagName;
   private String attributeName;
+
+  OkHttpClient client = new OkHttpClient();
 
   public AbstractRemoteRule(String tagName, String attributeName, String id) {
     super("REMOTE_" + id + "_RULE", "Local file should be present", Severity.WARNING, HtmlCheckerCategories.REMOTE);
@@ -44,6 +50,16 @@ public abstract class AbstractRemoteRule extends AbstractJerichoRule {
 //      return createLintError(file, errorMessage, element.getRowColumnVector().getRow());
 //    }
     return Optional.empty();
+  }
+
+  String run(String url) throws IOException {
+    Request request = new Request.Builder()
+        .url(url)
+        .build();
+
+    Response response = client.newCall(request).execute();
+    response.close();
+    return response.body().string();
   }
 
   protected String computeRemotePath(Element element) {

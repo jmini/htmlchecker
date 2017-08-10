@@ -13,7 +13,7 @@
     <dependency>
       <groupId>com.selesse</groupId>
       <artifactId>jxlint</artifactId>
-      <version>1.7.2</version>
+      <version>2.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>net.htmlparser.jericho</groupId>
@@ -49,6 +49,11 @@
       <version>3.6.2</version>
       <scope>test</scope>
     </dependency>
+<dependency>
+    <groupId>com.squareup.okhttp3</groupId>
+    <artifactId>okhttp</artifactId>
+    <version>3.8.1</version>
+</dependency>
   </dependencies>
   <build>
     <plugins>
