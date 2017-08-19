@@ -9,6 +9,7 @@
 
     <modules>
         <module>docs</module>
+        <module>htmlchecker-parent</module>
         <module>htmlchecker-core</module>
         <module>htmlchecker-cli</module>
     </modules>
