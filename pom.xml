@@ -12,6 +12,7 @@
         <module>htmlchecker-parent</module>
         <module>htmlchecker-core</module>
         <module>htmlchecker-cli</module>
+        <module>htmlchecker-maven-plugin</module>
     </modules>
 
 </project>
