@@ -23,7 +23,7 @@ Checker for HTML files
 
 Html checker is a java program that checks the content of your HTML pages and produces a report.
 It focuses on the content (broken link) and not on the form (is your HTML well-formed?).
-It is available as a cli tool or as a maven plugin.
+It is available as a command line tool or as a maven plugin.
 
 //end::description[]
 Read more on the link:{homepage}[project home page].

@@ -15,7 +15,7 @@
           <artifactId>${project.artifactId}</artifactId>
           <version>${project.version}</version>
           <configuration>
-            <sourceDirectory>${project.basedir}${file.separator}..${file.separator}htmlchecker-core${file.separator}src${file.separator}test${file.separator}resources${file.separator}site</sourceDirectory>
+            <sourceDirectory>${project.basedir}${file.separator}..${file.separator}site-example${file.separator}src${file.separator}main${file.separator}resources${file.separator}site</sourceDirectory>
             <outputType>xml</outputType>
             <outputFile>${project.build.directory}${file.separator}report_check.xml</outputFile>
             <enableOnlyRules>

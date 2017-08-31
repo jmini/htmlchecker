@@ -3,6 +3,8 @@
 include::{github-readme}[tags=vardef]
 
 :projectpage: https://github.com/{git-repository}
+:bintray_repo: https://bintray.com/jmini/maven
+:bintraypage: {bintray_repo}/htmlchecker
 
 include::{github-readme}[tags=header]
 
@@ -10,13 +12,31 @@ include::{github-readme}[tags=header]
 
 * link:{homepage}[Project home] (this page)
 * link:{projectpage}[GitHub project]
+* link:{bintraypage}[Binaries on Bintray]
 * link:{issues}[Issue tracker]
 
 TIP: Do you want to improve this page? Please git-link:self[edit it on GitHub].
 
 include::{github-readme}[tags=description]
 
-NOTE: TODO extend the description
+=== Extended description
+
+==== Checked rules
+
+* 
+* 
+* 
+* 
+
+==== Report
+
+=== Download
+
+=== Run the tool
+
+==== As maven plugin
+
+==== From the command line
 
 include::{github-readme}[tags=contact-section]
 

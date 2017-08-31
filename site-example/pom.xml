@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>fr.jmini.htmlchecker</groupId>
+    <artifactId>htmlchecker-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../htmlchecker-parent</relativePath>
+  </parent>
+  <artifactId>site-example</artifactId>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>fr.jmini.htmlchecker</groupId>
+        <artifactId>htmlchecker-maven-plugin</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <executions>
+          <execution>
+            <id>generate-html-report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>generate-report</goal>
+            </goals>
+            <configuration>
+              <sourceDirectory>${project.basedir}${file.separator}src${file.separator}main${file.separator}resources${file.separator}site</sourceDirectory>
+              <outputType>html</outputType>
+              <outputFile>${project.build.directory}${file.separator}report_example.html</outputFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

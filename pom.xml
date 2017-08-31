@@ -13,6 +13,7 @@
         <module>htmlchecker-core</module>
         <module>htmlchecker-cli</module>
         <module>htmlchecker-maven-plugin</module>
+        <module>site-example</module>
     </modules>
 
 </project>
