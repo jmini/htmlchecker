@@ -1,0 +1,1 @@
+java -cp lib/* fr.jmini.charchecker.cli.Main %*

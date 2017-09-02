@@ -23,16 +23,35 @@ include::{github-readme}[tags=description]
 
 ==== Checked rules
 
-* 
+* TODO git-link
 * 
 * 
 * 
 
 ==== Report
 
+HTML
+
+XML
+
 === Download
 
+A compiled version of the project is available on Bintray.
+
+You might want to integrate the maven plugin directly in your build.
+
+XXX
+
+If you are looking for the command line tool, here XXX
+
+
 === Run the tool
+
+XXXX
+unzip
+run `htmlchecker.bat` or `htmlchecker.sh` depending on your operating system.
+
+XXX Options
 
 ==== As maven plugin
 

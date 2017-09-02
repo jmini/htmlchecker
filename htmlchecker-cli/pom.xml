@@ -16,6 +16,11 @@
       <groupId>com.selesse</groupId>
       <artifactId>jxlint-cli</artifactId>
     </dependency>
+    <dependency>
+  <groupId>org.eclipse.jetty.orbit</groupId>
+  <artifactId>javax.servlet</artifactId>
+  <version>3.0.0.v201112011016</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -28,6 +33,38 @@
           <target>${project.java.version}</target>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.0.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>fr.jmini.charchecker.cli.Main</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-assembly-plugin</artifactId>
+    <version>3.0.0</version>
+    <configuration>
+        <!-- Configures the used assembly descriptor -->
+        <descriptors>
+            <descriptor>src/main/assembly/assembly.xml</descriptor>
+        </descriptors>
+    </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+</plugin>
     </plugins>
   </build>
 </project>
