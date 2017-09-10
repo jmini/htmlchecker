@@ -16,7 +16,7 @@ public class LocalImgTagRuleTest extends AbstractLocalRuleTest<LocalImgTagRule> 
   @Test
   public void testGetLintErrors() throws Exception {
     setupRule();
-    File file = new File(Resources.getResource(SITE_FOLDER + PAGE_NAME).getPath());
+    File file = new File(SITE_FOLDER + PAGE_NAME);
     List<LintError> lintErrors = rule.getLintErrors(file);
 
     assertThat(lintErrors).hasSize(1);

@@ -1,0 +1,29 @@
+<assembly>
+    <id>bin</id>
+    <!-- Specifies that our binary distribution is a zip package -->
+    <formats>
+        <format>zip</format>
+    </formats>
+ 
+    <!-- Adds the dependencies and our application to the lib directory -->
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>lib</outputDirectory>
+            <unpack>false</unpack>
+        </dependencySet>
+    </dependencySets>
+ 
+    <!--
+        Adds startup scripts to the root directory of zip package.
+        The startup scripts are copied from the src/main/scripts directory.
+    -->
+    <fileSets>
+        <fileSet>
+            <directory>${project.build.scriptSourceDirectory}</directory>
+            <outputDirectory></outputDirectory>
+            <includes>
+                <include>htmlchecker.*</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>

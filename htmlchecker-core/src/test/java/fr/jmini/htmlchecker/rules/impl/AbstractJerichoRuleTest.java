@@ -11,13 +11,12 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.google.common.io.Resources;
 import com.selesse.jxlint.model.rules.LintError;
 
 import fr.jmini.htmlchecker.AbstractHtmlCheckerTest;
 
 public abstract class AbstractJerichoRuleTest<T extends AbstractJerichoRule> extends AbstractHtmlCheckerTest {
-  protected static final String SITE_FOLDER = "site/";
+  protected static final String SITE_FOLDER = "../site-example/src/main/resources/site/";
   protected static final String PAGE_NAME = "index.html";
   protected T rule;
 
@@ -40,7 +39,7 @@ public abstract class AbstractJerichoRuleTest<T extends AbstractJerichoRule> ext
   public void setupMock() {
     rule = Mockito.spy(newRule());
 
-    File sampleTestDirectory = new File(Resources.getResource(SITE_FOLDER).getPath());
+    File sampleTestDirectory = new File(SITE_FOLDER);
     when(rule.getSourceDirectory()).thenReturn(sampleTestDirectory);
   }
 

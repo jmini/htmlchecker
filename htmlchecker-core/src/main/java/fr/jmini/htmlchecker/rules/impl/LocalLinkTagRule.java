@@ -5,6 +5,6 @@ import net.htmlparser.jericho.HTMLElementName;
 public class LocalLinkTagRule extends AbstractLocalRule {
 
   public LocalLinkTagRule() {
-    super(HTMLElementName.LINK, "href", "IMG_TAG");
+    super(HTMLElementName.LINK, "href", "LINK_TAG");
   }
 }

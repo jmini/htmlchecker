@@ -16,10 +16,10 @@ public class LocalATagRuleTest extends AbstractLocalRuleTest<LocalATagRule> {
   @Test
   public void testGetLintErrors() throws Exception {
     setupRule();
-    File file = new File(Resources.getResource(SITE_FOLDER + PAGE_NAME).getPath());
+    File file = new File(SITE_FOLDER + PAGE_NAME);
     List<LintError> lintErrors = rule.getLintErrors(file);
 
-    assertThat(lintErrors).hasSize(5);
+    assertThat(lintErrors).hasSize(4);
 
     for (LintError lintError : lintErrors) {
       switch (lintError.getLineNumber()) {
@@ -28,9 +28,6 @@ public class LocalATagRuleTest extends AbstractLocalRuleTest<LocalATagRule> {
           break;
         case 17:
           assertLintError(lintError, PAGE_NAME, 17, "Anchor 'p2' referenced in the 'href' attribute in the 'a' tag is missing in file  'index.html'");
-          break;
-        case 18:
-          assertLintError(lintError, PAGE_NAME, 18, "Anchor 'abc' referenced in the 'href' attribute in the 'a' tag is missing in file  'page1.html' (relative to 'index.html')");
           break;
         case 19:
           assertLintError(lintError, PAGE_NAME, 19, "Anchor 'xyz' referenced in the 'href' attribute in the 'a' tag is missing in file  'page1.html' (relative to 'index.html')");
