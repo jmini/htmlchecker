@@ -5,6 +5,7 @@ include::{github-readme}[tags=vardef]
 :projectpage: https://github.com/{git-repository}
 :bintray_repo: https://bintray.com/jmini/maven
 :bintraypage: {bintray_repo}/htmlchecker
+:bintrayrepo: http://dl.bintray.com/jmini/maven/
 
 include::{github-readme}[tags=header]
 
@@ -22,12 +23,12 @@ include::{github-readme}[tags=description]
 === Extended description
 
 Htmlchecker scans the `.html` files present in a given directory and verify that certain rules are violated or not.
-A report with all warnings and errors can be obtained as HTML or as XML.
+A report with all warnings and errors can be obtained as HTML or as XML file.
 
 ==== Checked rules
 
-Those rules ensures that local files referenced as attribute of the html tag are present.
-If missing an error is produced.
+Following rules ensures that local files referenced as attribute of some html tags are present.
+Missing files correspond to an error.
 
 * git-link:/htmlchecker-core/src/main/resources/doc/rules/LocalATagRule.md[LOCAL_A_TAG_RULE] (`href` attribute in the `<a>` tag)
 * git-link:/htmlchecker-core/src/main/resources/doc/rules/LocalImgTagRule.md[LOCAL_IMG_TAG_RULE] (`src` attribute in the `<img>` tag)
@@ -52,7 +53,7 @@ The xml report looks like this:
         message="File &apos;page2.html&apos; (relative to &apos;index.html&apos;) ......"
         category="Local"
         summary="Local file should be present"
-        explanation="All local file referenced by the `href` attribute ......""
+        explanation="All local file referenced by the `href` attribute ......"
         location="....../site-example/src/main/resources/site/index.html"
         lineNumber="15"
     />
@@ -62,12 +63,13 @@ The xml report looks like this:
 
 === Download
 
-A compiled version of the project is available on Bintray as maven repository.
+A compiled version of the project is available on link:{bintraypage}[Bintray] in a maven repository: `{bintrayrepo}`
 
-You might use maven or gradle to fetch the dependency you need.
-You can also directly use the maven plugin as step of your build 
+You might use maven or gradle to fetch the dependencies you need, depending on your use case.
+You can also directly use the maven plugin as step of your build.
 
-For the command line tool, a zip containing all the requested dependency in a lib folder and a basic statup script can also be downloaded from bintray.
+For the command line tool, a zip file is also available.
+It contains all the requested dependencies in a `lib` subfolder and basic startup scripts.
 
 === Run the tool
 
@@ -75,16 +77,39 @@ For the command line tool, a zip containing all the requested dependency in a li
 
 In the `plugins` section of your `build` section, you can add something like this:
 
+[source,xml]
 .Maven plugin usage example
 ----
 include::../../site-example/pom.xml[tags="plugin-usage", indent="0"]
 ----
 
-Do not forget to define the maven repository `http://dl.bintray.com/jmini/maven/` as possible `pluginRepository` (directly in your pom or in your maven settings).
+Do not forget to register the maven repository `{bintrayrepo}` as `pluginRepository` (directly in your pom or in your maven settings).
+
+Possible configuration parameters for the maven plugin:
+
+sourceDirectory:: Directory to scan (default value is `${project.basedir}`).
+outputType:: Type of report that should be created, possible values:
+**** `html` (default)
+**** `xml`
+outputFile:: Name of the file, where the report will be created (default value is `${project.build.directory}/report.html`).
+srcPathPrefix:: Local or remote path to the source directory, if not set (default) a relative path to the local file will be computed. For the `site-example` project in this repository, the remote path to view the files on GitHub is: `https://github.com/jmini/htmlchecker/blob/master/src/main/resources/site/`.
+enableOnlyRules:: Only check for these rules. Ignored if not set (default).
+disableRules:: Disable the list of rules. Ignored if not set (default).
+enableRules:: Enable the list of rules. Ignored if not set (default).
+enableCategories:: Run all rules of certain categories. Ignored if not set (default).
+noWarnings:: Only check for errors; ignore warnings. Possible values:
+**** `false` (default)
+**** `true`
+allWarnings:: Check all warnings, including those off by default. Possible values:
+**** `false` (default)
+**** `true`
+waringsAreErrors:: Treat all warnings as errors. Possible values:
+**** `false` (default)
+**** `true`
 
 ==== From the command line
 
-After having unzipped the archive you can run `htmlchecker.bat` or `htmlchecker.sh` depending on your operating system.
+After having unzipped the archive, you can run `htmlchecker.cmd` or `htmlchecker.sh` depending on your operating system.
 
 .Run the command line tool example
 ----
