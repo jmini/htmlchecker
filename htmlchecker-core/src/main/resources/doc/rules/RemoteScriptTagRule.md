@@ -1,0 +1,1 @@
+All remote resources referenced by the `src` attribute of the `<script>` tag should exist.

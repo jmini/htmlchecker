@@ -1,0 +1,1 @@
+All remote resources referenced by the `href` attribute of the `<link>` tag should exist.

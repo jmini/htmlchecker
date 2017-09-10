@@ -35,6 +35,15 @@ Missing files correspond to an error.
 * git-link:/htmlchecker-core/src/main/resources/doc/rules/LocalLinkTagRule.md[LOCAL_LINK_TAG_RULE] (`href` attribute in the `<link>` tag)
 * git-link:/htmlchecker-core/src/main/resources/doc/rules/LocalScriptTagRule.md[LOCAL_SCRIPT_TAG_RULE] (`src` attribute in the `<script>` tag)
 
+Following rules ensure that remote resources referenced as attribute of some html tags exist.
+For each reference a http call will be performed.
+Missing resources will produce a warning.
+
+* git-link:/htmlchecker-core/src/main/resources/doc/rules/RemoteATagRule.md[REMOTE_A_TAG_RULE] (`href` attribute in the `<a>` tag)
+* git-link:/htmlchecker-core/src/main/resources/doc/rules/RemoteImgTagRule.md[REMOTE_IMG_TAG_RULE] (`src` attribute in the `<img>` tag)
+* git-link:/htmlchecker-core/src/main/resources/doc/rules/RemoteLinkTagRule.md[REMOTE_LINK_TAG_RULE] (`href` attribute in the `<link>` tag)
+* git-link:/htmlchecker-core/src/main/resources/doc/rules/RemoteScriptTagRule.md[REMOTE_SCRIPT_TAG_RULE] (`src` attribute in the `<script>` tag)
+
 ==== Output report
 
 The html report looks like this:
