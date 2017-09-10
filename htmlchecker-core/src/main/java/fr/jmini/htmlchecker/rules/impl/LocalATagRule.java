@@ -42,7 +42,7 @@ public class LocalATagRule extends AbstractLocalRule {
     }
 
     int index = href.lastIndexOf("#");
-    if (index > -1) {
+    if (index > -1 && index < href.length() - 1) {
       String id = href.substring(index + 1);
       Source source;
       Supplier<String> fileNameSupplier;
