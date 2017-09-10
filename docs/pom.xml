@@ -67,6 +67,7 @@
                         <sectanchors>true</sectanchors>
                         <idprefix/>
                         <idseparator>-</idseparator>
+                        <imagesdir/>
                         <docinfo1>true</docinfo1>
                         <sourcedir>${project.build.sourceDirectory}</sourcedir>
                         <project-version>${project.version}</project-version>

@@ -21,41 +21,82 @@ include::{github-readme}[tags=description]
 
 === Extended description
 
+Htmlchecker scans the `.html` files present in a given directory and verify that certain rules are violated or not.
+A report with all warnings and errors can be obtained as HTML or as XML.
+
 ==== Checked rules
 
-* TODO git-link
-* 
-* 
-* 
+Those rules ensures that local files referenced as attribute of the html tag are present.
+If missing an error is produced.
 
-==== Report
+* git-link:/htmlchecker-core/src/main/resources/doc/rules/LocalATagRule.md[LOCAL_A_TAG_RULE] (`href` attribute in the `<a>` tag)
+* git-link:/htmlchecker-core/src/main/resources/doc/rules/LocalImgTagRule.md[LOCAL_IMG_TAG_RULE] (`src` attribute in the `<img>` tag)
+* git-link:/htmlchecker-core/src/main/resources/doc/rules/LocalLinkTagRule.md[LOCAL_LINK_TAG_RULE] (`href` attribute in the `<link>` tag)
+* git-link:/htmlchecker-core/src/main/resources/doc/rules/LocalScriptTagRule.md[LOCAL_SCRIPT_TAG_RULE] (`src` attribute in the `<script>` tag)
 
-HTML
+==== Output report
 
-XML
+The html report looks like this:
+
+link:example_report_html.png[image:example_report_html.png[HTML Report,300,308]]
+
+The xml report looks like this:
+
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<issues>
+    <issue
+        name="LOCAL_A_TAG_RULE"
+        severity="Error"
+        message="File &apos;page2.html&apos; (relative to &apos;index.html&apos;) ......"
+        category="Local"
+        summary="Local file should be present"
+        explanation="All local file referenced by the `href` attribute ......""
+        location="....../site-example/src/main/resources/site/index.html"
+        lineNumber="15"
+    />
+    <!-- ..... -->
+</issues>
+----
 
 === Download
 
-A compiled version of the project is available on Bintray.
+A compiled version of the project is available on Bintray as maven repository.
 
-You might want to integrate the maven plugin directly in your build.
+You might use maven or gradle to fetch the dependency you need.
+You can also directly use the maven plugin as step of your build 
 
-XXX
-
-If you are looking for the command line tool, here XXX
-
+For the command line tool, a zip containing all the requested dependency in a lib folder and a basic statup script can also be downloaded from bintray.
 
 === Run the tool
 
-XXXX
-unzip
-run `htmlchecker.bat` or `htmlchecker.sh` depending on your operating system.
-
-XXX Options
-
 ==== As maven plugin
 
+In the `plugins` section of your `build` section, you can add something like this:
+
+.Maven plugin usage example
+----
+include::../../site-example/pom.xml[tags="plugin-usage", indent="0"]
+----
+
+Do not forget to define the maven repository `http://dl.bintray.com/jmini/maven/` as possible `pluginRepository` (directly in your pom or in your maven settings).
+
 ==== From the command line
+
+After having unzipped the archive you can run `htmlchecker.bat` or `htmlchecker.sh` depending on your operating system.
+
+.Run the command line tool example
+----
+htmlchecker --html myreport.html site-example/src/main/resources/site/
+----
+
+Here is the complete list of options:
+
+.Complete list of options for htmlchecker
+----
+include::../../htmlchecker-cli/src/test/resources/htmlchecker-help.txt[]
+----
 
 include::{github-readme}[tags=contact-section]
 

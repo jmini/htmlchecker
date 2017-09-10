@@ -7,8 +7,13 @@
     <relativePath>../htmlchecker-parent</relativePath>
   </parent>
   <artifactId>site-example</artifactId>
+  <properties>
+    <site.location>${project.basedir}${file.separator}src${file.separator}main${file.separator}resources${file.separator}site</site.location>
+    <site.github>https://github.com/jmini/htmlchecker/blob/master/src/main/resources/site/</site.github>
+  </properties>
   <build>
     <plugins>
+      <!--tag::plugin-usage[]-->
       <plugin>
         <groupId>fr.jmini.htmlchecker</groupId>
         <artifactId>htmlchecker-maven-plugin</artifactId>
@@ -21,13 +26,15 @@
               <goal>generate-report</goal>
             </goals>
             <configuration>
-              <sourceDirectory>${project.basedir}${file.separator}src${file.separator}main${file.separator}resources${file.separator}site</sourceDirectory>
+              <sourceDirectory>${site.location}</sourceDirectory>
               <outputType>html</outputType>
-              <outputFile>${project.build.directory}${file.separator}report_example.html</outputFile>
+              <outputFile>${project.build.directory}${file.separator}myreport.html</outputFile>
+              <srcPathPrefix>${site.github}</srcPathPrefix>
             </configuration>
           </execution>
         </executions>
       </plugin>
+      <!--end::plugin-usage[]-->
     </plugins>
   </build>
 </project>
