@@ -13,11 +13,11 @@
         </dependencySet>
     </dependencySets>
  
+    <!--
+        Adds startup scripts to the root directory of zip package.
+        The startup scripts are copied from the src/main/scripts directory.
+    -->
     <fileSets>
-        <!--
-            Adds startup scripts to the root directory of zip package. The startup
-            scripts are copied from the src/main/scripts directory.
-        -->
         <fileSet>
             <directory>${project.build.scriptSourceDirectory}</directory>
             <outputDirectory></outputDirectory>
