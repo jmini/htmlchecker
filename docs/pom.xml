@@ -3,7 +3,7 @@
 
     <groupId>fr.jmini.jxlint</groupId>
     <artifactId>docs</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <pluginRepositories>
@@ -108,10 +108,10 @@
                     <phase>package</phase>
                     <configuration>
                         <target>
-                            <copy file="${project.build.directory}/../../site-example/target/myreport.html" tofile="${adoc.output}/example-report.html"/>
-                            <replaceregexp flags="gs" file="${adoc.output}/example-report.html" match="> [^&gt;&lt;]+site-example" replace="> site-example"/>
-                            <copy file="${project.build.directory}/../../site-example/target/myreport.xml" tofile="${adoc.output}/example-report.xml"/>
-                            <replaceregexp flags="gs" file="${adoc.output}/example-report.xml" match="[^&quot;]+site-example" replace="site-example"/>
+                            <copy file="${project.build.directory}/../../site-example/target/myreport.html" tofile="${adoc.output}/example-report.html" />
+                            <replaceregexp flags="gs" file="${adoc.output}/example-report.html" match="&gt; [^&gt;&lt;]+site-example" replace="&gt; site-example" />
+                            <copy file="${project.build.directory}/../../site-example/target/myreport.xml" tofile="${adoc.output}/example-report.xml" />
+                            <replaceregexp flags="gs" file="${adoc.output}/example-report.xml" match="[^&quot;]+site-example" replace="site-example" />
                         </target>
                     </configuration>
                     <goals>
