@@ -3,7 +3,7 @@
   <parent>
     <groupId>fr.jmini.htmlchecker</groupId>
     <artifactId>htmlchecker-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <relativePath>../htmlchecker-parent</relativePath>
   </parent>
   <artifactId>site-example</artifactId>
@@ -31,7 +31,7 @@
       <plugin>
         <groupId>fr.jmini.htmlchecker</groupId>
         <artifactId>htmlchecker-maven-plugin</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1-SNAPSHOT</version>
         <executions>
           <execution>
             <id>generate-html-report</id>
@@ -81,7 +81,7 @@
           <dependency>
             <groupId>fr.jmini.htmlchecker</groupId>
             <artifactId>htmlchecker-cli</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1-SNAPSHOT</version>
             <type>jar</type>
           </dependency>
         </dependencies>
