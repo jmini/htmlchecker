@@ -101,7 +101,7 @@ outputType:: Type of report that should be created, possible values:
 **** `html` (default)
 **** `xml`
 outputFile:: Name of the file, where the report will be created (default value is `${project.build.directory}/report.html`).
-srcPathPrefix:: Local or remote path to the source directory, if not set (default) a relative path to the local file will be computed. For the `site-example` project in this repository, the remote path to view the files on GitHub is: `https://github.com/jmini/htmlchecker/blob/master/src/main/resources/site/`.
+srcPathPrefix:: Local or remote path to the source directory, if not set (default) a relative path to the local file will be computed. For the `site-example` project in this repository, the remote path to view the files on GitHub is: `https://github.com/jmini/htmlchecker/blob/master/site-example/src/main/resources/site/`.
 enableOnlyRules:: Only check for these rules. Ignored if not set (default).
 disableRules:: Disable the list of rules. Ignored if not set (default).
 enableRules:: Enable the list of rules. Ignored if not set (default).
