@@ -43,6 +43,14 @@ public class LocalLinkTagRuleTest extends AbstractLocalRuleTest<LocalLinkTagRule
     assertThat(lintErrors).hasSize(0);
   }
 
+  @Test
+  public void testGetLintErrorsWithLocalDirectory() throws Exception {
+    setupRule();
+    File file = new File(Resources.getResource("dir-nok-link.html").getPath());
+    List<LintError> lintErrors = rule.getLintErrors(file);
+    assertThat(lintErrors).hasSize(2);
+  }
+
   @Override
   protected LocalLinkTagRule newRule() {
     return new LocalLinkTagRule();

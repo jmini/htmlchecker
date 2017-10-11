@@ -37,7 +37,7 @@ public abstract class AbstractLocalRule extends AbstractJerichoRule {
       return Optional.empty();
     }
     File localFile = new File(file.getParentFile(), localPath);
-    if (!localFile.exists()) {
+    if (!isLocalFileCorrect(localFile)) {
       String errorMessage =
           "File '" + HtmlUtility.computeRelPath(file, localFile) + localFile.getName() + "' (relative to '" + file.getName() + "') referenced by the '" + attributeName + "' attribute in the '" + tagName + "' tag is missing";
       return createLintError(file, errorMessage, element.getRowColumnVector().getRow());
@@ -47,5 +47,9 @@ public abstract class AbstractLocalRule extends AbstractJerichoRule {
 
   protected String computeLocalPath(Element element) {
     return element.getAttributeValue(attributeName);
+  }
+
+  protected boolean isLocalFileCorrect(File localFile) {
+    return localFile.exists() && localFile.isFile();
   }
 }

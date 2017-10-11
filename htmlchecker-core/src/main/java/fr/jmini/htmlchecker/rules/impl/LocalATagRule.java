@@ -30,6 +30,18 @@ public class LocalATagRule extends AbstractLocalRule {
   }
 
   @Override
+  protected boolean isLocalFileCorrect(File localFile) {
+    if (super.isLocalFileCorrect(localFile)) {
+      return true;
+    }
+    if (localFile.isDirectory()) {
+      File indexFile = computeIndexFile(localFile);
+      return super.isLocalFileCorrect(indexFile);
+    }
+    return false;
+  }
+
+  @Override
   protected Optional<LintError> checkAndcreateLintError(File file, Element element) {
     Optional<LintError> error = super.checkAndcreateLintError(file, element);
     if (error.isPresent()) {
@@ -51,7 +63,7 @@ public class LocalATagRule extends AbstractLocalRule {
         fileNameSupplier = () -> " '" + file.getName() + "'";
       }
       else {
-        File otherFile = new File(file.getParentFile(), href.substring(0, index));
+        File otherFile = computeOtherFile(file, href.substring(0, index));
         fileNameSupplier = () -> " '" + HtmlUtility.computeRelPath(file, otherFile) + otherFile.getName() + "' (relative to '" + file.getName() + "')";
         try {
           source = new Source(otherFile);
@@ -69,5 +81,17 @@ public class LocalATagRule extends AbstractLocalRule {
       }
     }
     return Optional.empty();
+  }
+
+  private File computeOtherFile(File file, String path) {
+    File f = new File(file.getParentFile(), path);
+    if (f.isDirectory()) {
+      return computeIndexFile(f);
+    }
+    return f;
+  }
+
+  private File computeIndexFile(File folder) {
+    return new File(folder, "index.html");
   }
 }
