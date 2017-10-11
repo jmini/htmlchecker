@@ -7,7 +7,7 @@ import com.selesse.jxlint.settings.ProgramSettings;
 public class HtmlCheckerProgramSettings implements ProgramSettings {
   @Override
   public String getProgramVersion() {
-    return "1.0.0";
+    return "1.0.1";
   }
 
   @Override
