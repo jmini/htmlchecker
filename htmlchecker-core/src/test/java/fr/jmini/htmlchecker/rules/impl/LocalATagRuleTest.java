@@ -65,6 +65,14 @@ public class LocalATagRuleTest extends AbstractLocalRuleTest<LocalATagRule> {
     assertThat(lintErrors).hasSize(0);
   }
 
+  @Test
+  public void testGetLintErrorsWithRoot() throws Exception {
+    setupRule();
+    File file = new File(Resources.getResource("root-a.html").getPath());
+    List<LintError> lintErrors = rule.getLintErrors(file);
+    assertThat(lintErrors).hasSize(0);
+  }
+
   @Override
   protected LocalATagRule newRule() {
     return new LocalATagRule();

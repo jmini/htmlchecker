@@ -48,6 +48,14 @@ public class LocalScriptTagRuleTest extends AbstractLocalRuleTest<LocalScriptTag
     assertThat(lintErrors).hasSize(2);
   }
 
+  @Test
+  public void testGetLintErrorsWithRoot() throws Exception {
+    setupRule();
+    File file = new File(Resources.getResource("root-script.html").getPath());
+    List<LintError> lintErrors = rule.getLintErrors(file);
+    assertThat(lintErrors).hasSize(0);
+  }
+
   @Override
   protected LocalScriptTagRule newRule() {
     return new LocalScriptTagRule();

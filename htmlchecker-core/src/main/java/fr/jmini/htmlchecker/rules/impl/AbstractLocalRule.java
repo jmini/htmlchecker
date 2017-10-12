@@ -33,7 +33,7 @@ public abstract class AbstractLocalRule extends AbstractJerichoRule {
 
   protected Optional<LintError> checkAndcreateLintError(File file, Element element) {
     String localPath = computeLocalPath(element);
-    if (localPath == null || localPath.isEmpty() || HtmlUtility.isExternalPath(localPath)) {
+    if (isLocalPathIgnored(localPath)) {
       return Optional.empty();
     }
     File localFile = new File(file.getParentFile(), localPath);
@@ -47,6 +47,10 @@ public abstract class AbstractLocalRule extends AbstractJerichoRule {
 
   protected String computeLocalPath(Element element) {
     return element.getAttributeValue(attributeName);
+  }
+
+  protected boolean isLocalPathIgnored(String localPath) {
+    return localPath == null || localPath.isEmpty() || HtmlUtility.isExternalPath(localPath) || localPath.startsWith("/");
   }
 
   protected boolean isLocalFileCorrect(File localFile) {
