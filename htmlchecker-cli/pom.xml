@@ -3,7 +3,7 @@
   <parent>
     <groupId>fr.jmini.htmlchecker</groupId>
     <artifactId>htmlchecker-parent</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1-SNAPSHOT</version>
     <relativePath>../htmlchecker-parent</relativePath>
   </parent>
   <artifactId>htmlchecker-cli</artifactId>
