@@ -516,7 +516,7 @@ table.CodeRay td.code>pre{padding:0}
 <h1>htmlchecker</h1>
 <div class="details">
 <span id="author" class="author">Checker for HTML files</span><br>
-<span id="revdate">2017-09-17</span>
+<span id="revdate">2019-07-31</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -556,9 +556,6 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li>
 <p><a href="https://github.com/jmini/htmlchecker">GitHub project</a></p>
-</li>
-<li>
-<p><a href="https://bintray.com/jmini/maven/htmlchecker">Binaries on Bintray</a></p>
 </li>
 <li>
 <p><a href="https://github.com/jmini/htmlchecker/issues">Issue tracker</a></p>
@@ -656,7 +653,7 @@ Missing files correspond to an error.</p>
 <h2 id="download"><a class="anchor" href="#download"></a>Download</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A compiled version of the project is available on <a href="https://bintray.com/jmini/maven/htmlchecker">Bintray</a> in a maven repository: <code><a href="http://dl.bintray.com/jmini/maven/" class="bare">http://dl.bintray.com/jmini/maven/</a></code></p>
+<p>Since version 1.2.0, a compiled version of the project is available on maven central.</p>
 </div>
 <div class="paragraph">
 <p>You might use maven or gradle to fetch the dependencies you need, depending on your use case.
@@ -664,7 +661,7 @@ You can also directly use the maven plugin as step of your build.</p>
 </div>
 <div class="paragraph">
 <p>For the command line tool, a zip file is also available:
-<a href="https://bintray.com/jmini/maven/download_file?file_path=fr%2Fjmini%2Fhtmlchecker%2Fhtmlchecker-cli%2F1.0.0%2Fhtmlchecker-cli-1.0.0-bin.zip">htmlchecker-cli-1.0.0-bin.zip</a>.
+<a href="https://repo1.maven.org/maven2/fr/jmini/htmlchecker/htmlchecker-cli/1.2.0/htmlchecker-cli-1.2.0-bin.zip">htmlchecker-cli-1.2.0-bin.zip</a>.
 It contains all the requested dependencies in a <code>lib</code> subfolder and basic startup scripts.</p>
 </div>
 </div>
@@ -683,7 +680,7 @@ It contains all the requested dependencies in a <code>lib</code> subfolder and b
 <pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;plugin&gt;</span>
   <span class="tag">&lt;groupId&gt;</span>fr.jmini.htmlchecker<span class="tag">&lt;/groupId&gt;</span>
   <span class="tag">&lt;artifactId&gt;</span>htmlchecker-maven-plugin<span class="tag">&lt;/artifactId&gt;</span>
-  <span class="tag">&lt;version&gt;</span>1.0.0<span class="tag">&lt;/version&gt;</span>
+  <span class="tag">&lt;version&gt;</span>1.2.0<span class="tag">&lt;/version&gt;</span>
   <span class="tag">&lt;executions&gt;</span>
     <span class="tag">&lt;execution&gt;</span>
       <span class="tag">&lt;id&gt;</span>generate-html-report<span class="tag">&lt;/id&gt;</span>
@@ -700,26 +697,6 @@ It contains all the requested dependencies in a <code>lib</code> subfolder and b
     <span class="tag">&lt;/execution&gt;</span>
   <span class="tag">&lt;/executions&gt;</span>
 <span class="tag">&lt;/plugin&gt;</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Do not forget to register the maven repository <code><a href="http://dl.bintray.com/jmini/maven/" class="bare">http://dl.bintray.com/jmini/maven/</a></code> as <code>pluginRepository</code> (directly in your pom or in your maven settings).</p>
-</div>
-<div class="listingblock">
-<div class="title">Repository registration in the pom.xml example</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;pluginRepositories&gt;</span>
-  <span class="tag">&lt;pluginRepository&gt;</span>
-    <span class="tag">&lt;id&gt;</span>bintray.jmini.maven<span class="tag">&lt;/id&gt;</span>
-    <span class="tag">&lt;url&gt;</span>http://dl.bintray.com/jmini/maven/<span class="tag">&lt;/url&gt;</span>
-    <span class="tag">&lt;releases&gt;</span>
-      <span class="tag">&lt;enabled&gt;</span>true<span class="tag">&lt;/enabled&gt;</span>
-    <span class="tag">&lt;/releases&gt;</span>
-    <span class="tag">&lt;snapshots&gt;</span>
-      <span class="tag">&lt;enabled&gt;</span>false<span class="tag">&lt;/enabled&gt;</span>
-    <span class="tag">&lt;/snapshots&gt;</span>
-  <span class="tag">&lt;/pluginRepository&gt;</span>
-<span class="tag">&lt;/pluginRepositories&gt;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -751,7 +728,7 @@ It contains all the requested dependencies in a <code>lib</code> subfolder and b
 </dd>
 <dt class="hdlist1">srcPathPrefix</dt>
 <dd>
-<p>Local or remote path to the source directory, if not set (default) a relative path to the local file will be computed. For the <code>site-example</code> project in this repository, the remote path to view the files on GitHub is: <code><a href="https://github.com/jmini/htmlchecker/blob/master/site-example/src/main/resources/site/" class="bare">https://github.com/jmini/htmlchecker/blob/master/src/main/resources/site/</a></code>.</p>
+<p>Local or remote path to the source directory, if not set (default) a relative path to the local file will be computed. For the <code>site-example</code> project in this repository, the remote path to view the files on GitHub is: <code><a href="https://github.com/jmini/htmlchecker/blob/master/site-example/src/main/resources/site/" class="bare">https://github.com/jmini/htmlchecker/blob/master/site-example/src/main/resources/site/</a></code>.</p>
 </dd>
 <dt class="hdlist1">enableOnlyRules</dt>
 <dd>
@@ -853,6 +830,7 @@ It contains all the requested dependencies in a <code>lib</code> subfolder and b
  -q,--quiet                    Don't output any progress or reports.
  -t,--html &lt;filename&gt;          Create an HTML report.
  -x,--xml &lt;filename&gt;           Create an XML (!!) report.
+ -j,--jenkins-xml &lt;filename&gt;   Create an XML Jenkins format (!!) report.
  -sp,--srcpath &lt;PATH-PREFIX&gt;   Local or remote path to the source
                                directory, if not set a relative path to
                                the local file will be computed.
@@ -931,7 +909,7 @@ Exit Status:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-09-17 12:30:25 CEST
+Last updated 2019-07-31 13:02:12 CEST
 </div>
 </div>
 </body>
