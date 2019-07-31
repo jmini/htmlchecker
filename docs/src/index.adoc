@@ -3,9 +3,6 @@
 include::{github-readme}[tags=vardef]
 
 :projectpage: https://github.com/{git-repository}
-:bintray_repo: https://bintray.com/jmini/maven
-:bintraypage: {bintray_repo}/htmlchecker
-:bintrayrepo: http://dl.bintray.com/jmini/maven/
 
 include::{github-readme}[tags=header]
 
@@ -13,7 +10,6 @@ include::{github-readme}[tags=header]
 
 * link:{homepage}[Project home] (this page)
 * link:{projectpage}[GitHub project]
-* link:{bintraypage}[Binaries on Bintray]
 * link:{issues}[Issue tracker]
 
 TIP: Do you want to improve this page? Please git-link:self[edit it on GitHub].
@@ -65,13 +61,13 @@ See an example for the git-link:site-example[site-example] project: link:example
 
 == Download
 
-A compiled version of the project is available on link:{bintraypage}[Bintray] in a maven repository: `{bintrayrepo}`
+Since version 1.2.0, a compiled version of the project is available on maven central.
 
 You might use maven or gradle to fetch the dependencies you need, depending on your use case.
 You can also directly use the maven plugin as step of your build.
 
 For the command line tool, a zip file is also available: 
-link:https://bintray.com/jmini/maven/download_file?file_path=fr%2Fjmini%2Fhtmlchecker%2Fhtmlchecker-cli%2F{project-version}%2Fhtmlchecker-cli-{project-version}-bin.zip[htmlchecker-cli-{project-version}-bin.zip].
+link:https://repo1.maven.org/maven2/fr/jmini/htmlchecker/htmlchecker-cli/{project-version}/htmlchecker-cli-{project-version}-bin.zip[htmlchecker-cli-{project-version}-bin.zip].
 It contains all the requested dependencies in a `lib` subfolder and basic startup scripts.
 
 == Run the tool
@@ -84,14 +80,6 @@ In the `plugins` section of your `build` section, you can add something like thi
 .Maven plugin usage example
 ----
 include::../../site-example/pom.xml[tags="plugin-usage", indent="0"]
-----
-
-Do not forget to register the maven repository `{bintrayrepo}` as `pluginRepository` (directly in your pom or in your maven settings).
-
-[source,xml]
-.Repository registration in the pom.xml example
-----
-include::../../site-example/pom.xml[tags="repo", indent="0"]
 ----
 
 Possible configuration parameters for the maven plugin:

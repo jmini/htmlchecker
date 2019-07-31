@@ -3,7 +3,7 @@
 
     <groupId>fr.jmini.htmlchecker</groupId>
     <artifactId>root</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <url>https://jmini.github.io/htmlchecker/</url>
@@ -22,33 +22,6 @@
         <module>htmlchecker-maven-plugin</module>
         <module>site-example</module>
     </modules>
-
-    <scm>
-        <connection>scm:git:https://github.com/jmini/htmlchecker.git</connection>
-        <developerConnection>scm:git:git@github.com:jmini/htmlchecker.git</developerConnection>
-        <url>https://github.com/jmini/htmlchecker</url>
-        <tag>HEAD</tag>
-    </scm>
-    <distributionManagement>
-        <repository>
-            <id>bintray.jmini.maven</id>
-            <url>https://api.bintray.com/maven/jmini/maven/htmlchecker</url>
-        </repository>
-    </distributionManagement>
-    <licenses>
-        <license>
-            <name>MIT license</name>
-            <url>http://opensource.org/licenses/mit-license.php</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <developers>
-        <developer>
-            <id>jmini</id>
-            <name>Jeremie Bresson</name>
-            <email>dev@jmini.fr</email>
-        </developer>
-    </developers>
 
     <profiles>
         <profile>

@@ -4,10 +4,12 @@
   <parent>
     <groupId>fr.jmini.htmlchecker</groupId>
     <artifactId>htmlchecker-parent</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
     <relativePath>../htmlchecker-parent</relativePath>
   </parent>
   <artifactId>htmlchecker-core</artifactId>
+  <name>Htmlchecker core</name>
+  <description>Shared code for htmlchecker</description>
 
   <dependencies>
     <dependency>
@@ -38,6 +40,11 @@
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
     </dependency>
+    <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>19.0</version>
+    </dependency>
   </dependencies>
   <build>
     <testResources>
@@ -63,6 +70,14 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

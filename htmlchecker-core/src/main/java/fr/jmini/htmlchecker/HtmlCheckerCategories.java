@@ -1,7 +1,7 @@
 package fr.jmini.htmlchecker;
 
 public enum HtmlCheckerCategories {
-  LOCAL("Local"),
+  LOCAL("HtmlChecker-Local"),
   ;
 
   private final String displayName;

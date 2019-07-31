@@ -3,10 +3,12 @@
   <parent>
     <groupId>fr.jmini.htmlchecker</groupId>
     <artifactId>htmlchecker-parent</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
     <relativePath>../htmlchecker-parent</relativePath>
   </parent>
   <artifactId>htmlchecker-cli</artifactId>
+  <name>Htmlchecker cli</name>
+  <description>Command line interface for htmlchecker</description>
   <dependencies>
     <dependency>
       <groupId>fr.jmini.htmlchecker</groupId>
@@ -34,6 +36,14 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

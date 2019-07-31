@@ -3,35 +3,25 @@
   <parent>
     <groupId>fr.jmini.htmlchecker</groupId>
     <artifactId>htmlchecker-parent</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
     <relativePath>../htmlchecker-parent</relativePath>
   </parent>
   <artifactId>site-example</artifactId>
+  <name>Htmlchecker usage example</name>
+  <description>Demo site to test htmlchecker</description>
+
   <properties>
     <site.location>${project.basedir}${file.separator}src${file.separator}main${file.separator}resources${file.separator}site</site.location>
     <site.github>https://github.com/jmini/htmlchecker/blob/master/site-example/src/main/resources/site/</site.github>
+    <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
   </properties>
-  <!--tag::repo[]-->
-  <pluginRepositories>
-    <pluginRepository>
-      <id>bintray.jmini.maven</id>
-      <url>http://dl.bintray.com/jmini/maven/</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
-  <!--end::repo[]-->
   <build>
     <plugins>
       <!--tag::plugin-usage[]-->
       <plugin>
         <groupId>fr.jmini.htmlchecker</groupId>
         <artifactId>htmlchecker-maven-plugin</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+        <version>1.2.0-SNAPSHOT</version>
         <executions>
           <execution>
             <id>generate-html-report</id>
@@ -81,7 +71,7 @@
           <dependency>
             <groupId>fr.jmini.htmlchecker</groupId>
             <artifactId>htmlchecker-cli</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <version>1.2.0-SNAPSHOT</version>
             <type>jar</type>
           </dependency>
         </dependencies>
