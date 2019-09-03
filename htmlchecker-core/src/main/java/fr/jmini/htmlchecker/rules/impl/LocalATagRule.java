@@ -26,7 +26,7 @@ public class LocalATagRule extends AbstractLocalRule {
   @Override
   protected String computeLocalPath(Element element) {
     String path = super.computeLocalPath(element);
-    return HtmlUtility.removeAnchor(path);
+    return HtmlUtility.removeAnchorAndQuery(path);
   }
 
   @Override

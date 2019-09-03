@@ -53,11 +53,31 @@ public final class HtmlUtility {
     return path.matches("[a-z]+:.*");
   }
 
-  public static String removeAnchor(String path) {
+  public static String removeAnchorAndQuery(String path) {
     if (path == null) {
       return null;
     }
-    int index = path.lastIndexOf("#");
+    int index1 = path.lastIndexOf("#");
+    int index2 = path.lastIndexOf("?");
+    int index = -1;
+    if (index1 > -1) {
+      if (index2 > -1) {
+        if (index2 > index1) {
+          index = index1;
+        }
+        else {
+          index = index2;
+        }
+      }
+      else {
+        index = index1;
+      }
+    }
+    else {
+      if (index2 > -1) {
+        index = index2;
+      }
+    }
     if (index > -1) {
       return path.substring(0, index);
     }

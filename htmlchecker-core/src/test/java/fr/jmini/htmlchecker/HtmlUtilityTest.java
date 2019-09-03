@@ -100,12 +100,18 @@ public class HtmlUtilityTest {
   }
 
   @Test
-  public void testRemoveAnchor() throws Exception {
-    assertEquals("/archive/page1.html", HtmlUtility.removeAnchor("/archive/page1.html"));
-    assertEquals("/archive/page1.html", HtmlUtility.removeAnchor("/archive/page1.html#anchor"));
-    assertEquals("/archive/page1.html", HtmlUtility.removeAnchor("/archive/page1.html#"));
-    assertEquals("", HtmlUtility.removeAnchor(""));
-    assertEquals(null, HtmlUtility.removeAnchor(null));
+  public void testRemoveAnchorAndQuery() throws Exception {
+    assertEquals("/archive/page1.html", HtmlUtility.removeAnchorAndQuery("/archive/page1.html"));
+    assertEquals("/archive/page1.html", HtmlUtility.removeAnchorAndQuery("/archive/page1.html#anchor"));
+    assertEquals("/archive/page1.html", HtmlUtility.removeAnchorAndQuery("/archive/page1.html#"));
+    assertEquals("/archive/page1.html", HtmlUtility.removeAnchorAndQuery("/archive/page1.html?query"));
+    assertEquals("/archive/page1.html", HtmlUtility.removeAnchorAndQuery("/archive/page1.html?"));
+    assertEquals("/archive/page1.html", HtmlUtility.removeAnchorAndQuery("/archive/page1.html?query#anchor"));
+    assertEquals("/archive/page1.html", HtmlUtility.removeAnchorAndQuery("/archive/page1.html#anchor?"));
+    assertEquals("", HtmlUtility.removeAnchorAndQuery(""));
+    assertEquals("", HtmlUtility.removeAnchorAndQuery("?id=1"));
+    assertEquals("", HtmlUtility.removeAnchorAndQuery("#test"));
+    assertEquals(null, HtmlUtility.removeAnchorAndQuery(null));
 
   }
 }
