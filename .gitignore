@@ -1,3 +1,5 @@
+bin/
+
 # Git ignore in subfolders
 **/.gitignore
 
@@ -11,6 +13,11 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+
+# Gradle
+build/
+.gradle
+!htmlchecker-gradle-plugin/gradle/wrapper/gradle-wrapper.jar
 
 # Compiled class file
 *.class
