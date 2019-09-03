@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>fr.jmini.htmlchecker</groupId>
   <artifactId>htmlchecker-parent</artifactId>
-  <version>1.2.1</version>
+  <version>1.2.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <url>https://jmini.github.io/htmlchecker/</url>
   <name>Htmlchecker parent</name>
@@ -25,7 +25,7 @@
       <dependency>
         <groupId>fr.jmini.htmlchecker</groupId>
         <artifactId>htmlchecker-core</artifactId>
-        <version>1.2.1</version>
+        <version>1.2.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>com.selesse</groupId>
