@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title> htmlchecker 1.2.0 - Report </title>
+<title> htmlchecker 1.2.1 - Report </title>
     <style>/*!
  * Bootstrap v3.1.0 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
@@ -106,8 +106,8 @@ $(document).ready(function() {
 <body>
 <div class="container">
     <div class="well">
-        <h2> htmlchecker 1.2.0 - Lint Report </h2>
-        <h3> Wed Jul 31 16:36:41 CEST 2019 </h3>
+        <h2> htmlchecker 1.2.1 - Lint Report </h2>
+        <h3> Tue Sep 03 22:02:44 CEST 2019 </h3>
         <h4> site-example/src/main/resources/site </h4>
     </div>
 
@@ -273,49 +273,6 @@ $(document).ready(function() {
                     <div class="panel panel-success">
                 <div class="panel-heading">
                     <div>
-                        <span id="local_script_tag_rule" class="panel-title"> LOCAL_SCRIPT_TAG_RULE </span>
-                        <span class="panel-title pull-right"> HtmlChecker-Local </span>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <table class="table">
-                        <tr> <th> Rule Name </th> <td> LOCAL_SCRIPT_TAG_RULE </td> </tr>
-                        <tr> <th> Summary </th> <td> Local file should be present </td> </tr>
-                        <tr> <th> Severity </th> <td> ERROR </td> </tr>
-                        <tr> <th> Category </th> <td> HtmlChecker-Local </td> </tr>
-                                                <tr> <th> Enabled by default? </th> <td> Yes </tr>
-                    </table>
-                    <p>All local files referenced by the <code>src</code> attribute of the <code>&lt;script&gt;</code> tag should exist.</p>
-<p>With this small site structure:</p>
-<pre><code>site
-|   index.html
-|   page1.html
-|
-+---css
-|       style1.css
-|
-+---img
-|       pict1.png
-|
-\---js
-        script1.js
-</code></pre>
-<p>If <code>index.html</code> contains this content:</p>
-<pre><code>&lt;head&gt;
-    &lt;!-- ... --&gt;
-    &lt;script type=&quot;text/javascript&quot; src=&quot;js/script1.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;js/script2.js&quot;&gt;&lt;/script&gt;
-    &lt;!-- ... --&gt;
-&lt;/head&gt;
-</code></pre>
-<p>The first <code>&lt;script&gt;</code> tag does not trigger any ERROR, because the file <code>js/script1.js</code> exists.</p>
-<p>The second <code>&lt;script&gt;</code> tag triggers an ERROR, because there is no file <code>js/script2.js</code>.</p>
-<p>Remote resources (for example starting with <code>https://</code>) are not checked by this rule.</p>
-                </div>
-            </div>
-                    <div class="panel panel-success">
-                <div class="panel-heading">
-                    <div>
                         <span id="local_img_tag_rule" class="panel-title"> LOCAL_IMG_TAG_RULE </span>
                         <span class="panel-title pull-right"> HtmlChecker-Local </span>
                     </div>
@@ -353,6 +310,91 @@ $(document).ready(function() {
 </code></pre>
 <p>The first <code>&lt;img&gt;</code> tag does not trigger any ERROR, because the file <code>img/pict1.png</code> exists.</p>
 <p>The second <code>&lt;img&gt;</code> tag triggers an ERROR, because there is no file <code>img/pict2.png</code>.</p>
+<p>Remote resources (for example starting with <code>https://</code>) are not checked by this rule.</p>
+                </div>
+            </div>
+                    <div class="panel panel-success">
+                <div class="panel-heading">
+                    <div>
+                        <span id="local_link_tag_rule" class="panel-title"> LOCAL_LINK_TAG_RULE </span>
+                        <span class="panel-title pull-right"> HtmlChecker-Local </span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tr> <th> Rule Name </th> <td> LOCAL_LINK_TAG_RULE </td> </tr>
+                        <tr> <th> Summary </th> <td> Local file should be present </td> </tr>
+                        <tr> <th> Severity </th> <td> ERROR </td> </tr>
+                        <tr> <th> Category </th> <td> HtmlChecker-Local </td> </tr>
+                                                <tr> <th> Enabled by default? </th> <td> Yes </tr>
+                    </table>
+                    <p>All local files referenced by the <code>href</code> attribute of the <code>&lt;link&gt;</code> tag should exist.</p>
+<p>With this small site structure:</p>
+<pre><code>site
+|   index.html
+|   page1.html
+|
++---css
+|       style1.css
+|
++---img
+|       pict1.png
+|
+\---js
+        script1.js
+</code></pre>
+<p>If <code>index.html</code> contains this content:</p>
+<pre><code>&lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/style1.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/style2.css&quot;&gt;
+    &lt;!-- ... --&gt;
+&lt;/head&gt;
+</code></pre>
+<p>The first <code>&lt;link&gt;</code> tag does not trigger any ERROR, because the file <code>css/style1.css</code> exists.</p>
+<p>The second <code>&lt;link&gt;</code> tag triggers an ERROR, because there is no file <code>css/style2.css</code>.</p>
+<p>Remote resources (for example starting with <code>https://</code>) are not checked by this rule.</p>
+                </div>
+            </div>
+                    <div class="panel panel-success">
+                <div class="panel-heading">
+                    <div>
+                        <span id="local_script_tag_rule" class="panel-title"> LOCAL_SCRIPT_TAG_RULE </span>
+                        <span class="panel-title pull-right"> HtmlChecker-Local </span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tr> <th> Rule Name </th> <td> LOCAL_SCRIPT_TAG_RULE </td> </tr>
+                        <tr> <th> Summary </th> <td> Local file should be present </td> </tr>
+                        <tr> <th> Severity </th> <td> ERROR </td> </tr>
+                        <tr> <th> Category </th> <td> HtmlChecker-Local </td> </tr>
+                                                <tr> <th> Enabled by default? </th> <td> Yes </tr>
+                    </table>
+                    <p>All local files referenced by the <code>src</code> attribute of the <code>&lt;script&gt;</code> tag should exist.</p>
+<p>With this small site structure:</p>
+<pre><code>site
+|   index.html
+|   page1.html
+|
++---css
+|       style1.css
+|
++---img
+|       pict1.png
+|
+\---js
+        script1.js
+</code></pre>
+<p>If <code>index.html</code> contains this content:</p>
+<pre><code>&lt;head&gt;
+    &lt;!-- ... --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;js/script1.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;js/script2.js&quot;&gt;&lt;/script&gt;
+    &lt;!-- ... --&gt;
+&lt;/head&gt;
+</code></pre>
+<p>The first <code>&lt;script&gt;</code> tag does not trigger any ERROR, because the file <code>js/script1.js</code> exists.</p>
+<p>The second <code>&lt;script&gt;</code> tag triggers an ERROR, because there is no file <code>js/script2.js</code>.</p>
 <p>Remote resources (for example starting with <code>https://</code>) are not checked by this rule.</p>
                 </div>
             </div>
@@ -399,48 +441,6 @@ $(document).ready(function() {
 <p>The first <code>&lt;a&gt;</code> tag does not trigger any ERROR, because the file <code>page1.html</code> exists. If <code>page1.html</code> contains the anchor <code>abc</code> then the link <code>page1.html#abc</code> is also valid, and no ERROR is created for the second <code>&lt;a&gt;</code> tag. </p>
 <p>The third <code>&lt;a&gt;</code> tag triggers an ERROR, because there is no file <code>page2.html</code>. If <code>page1.html</code> does not contain the anchor <code>xyz</code>, the fourth <code>&lt;a&gt;</code> tag triggers an ERROR.</p>
 <p>Remote files (for example starting with <code>https://</code>) are not checked by this rule.</p>
-                </div>
-            </div>
-                    <div class="panel panel-success">
-                <div class="panel-heading">
-                    <div>
-                        <span id="local_link_tag_rule" class="panel-title"> LOCAL_LINK_TAG_RULE </span>
-                        <span class="panel-title pull-right"> HtmlChecker-Local </span>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <table class="table">
-                        <tr> <th> Rule Name </th> <td> LOCAL_LINK_TAG_RULE </td> </tr>
-                        <tr> <th> Summary </th> <td> Local file should be present </td> </tr>
-                        <tr> <th> Severity </th> <td> ERROR </td> </tr>
-                        <tr> <th> Category </th> <td> HtmlChecker-Local </td> </tr>
-                                                <tr> <th> Enabled by default? </th> <td> Yes </tr>
-                    </table>
-                    <p>All local files referenced by the <code>href</code> attribute of the <code>&lt;link&gt;</code> tag should exist.</p>
-<p>With this small site structure:</p>
-<pre><code>site
-|   index.html
-|   page1.html
-|
-+---css
-|       style1.css
-|
-+---img
-|       pict1.png
-|
-\---js
-        script1.js
-</code></pre>
-<p>If <code>index.html</code> contains this content:</p>
-<pre><code>&lt;head&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/style1.css&quot;&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/style2.css&quot;&gt;
-    &lt;!-- ... --&gt;
-&lt;/head&gt;
-</code></pre>
-<p>The first <code>&lt;link&gt;</code> tag does not trigger any ERROR, because the file <code>css/style1.css</code> exists.</p>
-<p>The second <code>&lt;link&gt;</code> tag triggers an ERROR, because there is no file <code>css/style2.css</code>.</p>
-<p>Remote resources (for example starting with <code>https://</code>) are not checked by this rule.</p>
                 </div>
             </div>
             </div>

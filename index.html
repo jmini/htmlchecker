@@ -516,7 +516,7 @@ table.CodeRay td.code>pre{padding:0}
 <h1>htmlchecker</h1>
 <div class="details">
 <span id="author" class="author">Checker for HTML files</span><br>
-<span id="revdate">2019-07-31</span>
+<span id="revdate">2019-09-03</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -535,6 +535,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#from-the-command-line">From the command line</a></li>
 </ul>
 </li>
+<li><a href="#jenkins-integration">Jenkins integration</a></li>
 <li><a href="#get-the-sources">Get the sources</a>
 <ul class="sectlevel2">
 <li><a href="#build">Build</a></li>
@@ -661,7 +662,7 @@ You can also directly use the maven plugin as step of your build.</p>
 </div>
 <div class="paragraph">
 <p>For the command line tool, a zip file is also available:
-<a href="https://repo1.maven.org/maven2/fr/jmini/htmlchecker/htmlchecker-cli/1.2.0/htmlchecker-cli-1.2.0-bin.zip">htmlchecker-cli-1.2.0-bin.zip</a>.
+<a href="https://repo1.maven.org/maven2/fr/jmini/htmlchecker/htmlchecker-cli/1.2.1/htmlchecker-cli-1.2.1-bin.zip">htmlchecker-cli-1.2.1-bin.zip</a>.
 It contains all the requested dependencies in a <code>lib</code> subfolder and basic startup scripts.</p>
 </div>
 </div>
@@ -680,7 +681,7 @@ It contains all the requested dependencies in a <code>lib</code> subfolder and b
 <pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;plugin&gt;</span>
   <span class="tag">&lt;groupId&gt;</span>fr.jmini.htmlchecker<span class="tag">&lt;/groupId&gt;</span>
   <span class="tag">&lt;artifactId&gt;</span>htmlchecker-maven-plugin<span class="tag">&lt;/artifactId&gt;</span>
-  <span class="tag">&lt;version&gt;</span>1.2.0<span class="tag">&lt;/version&gt;</span>
+  <span class="tag">&lt;version&gt;</span>1.2.1<span class="tag">&lt;/version&gt;</span>
   <span class="tag">&lt;executions&gt;</span>
     <span class="tag">&lt;execution&gt;</span>
       <span class="tag">&lt;id&gt;</span>generate-html-report<span class="tag">&lt;/id&gt;</span>
@@ -853,6 +854,49 @@ Exit Status:
 </div>
 </div>
 <div class="sect1">
+<h2 id="jenkins-integration"><a class="anchor" href="#jenkins-integration"></a>Jenkins integration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With version <code>1.2.0</code> and newer a new export format is available: <code>jenkins-xml</code>
+The generated XML file can be parsed by Jenkins using the <a href="https://wiki.jenkins.io/x/1YTeCQ">Warnings Next Generation Plugin</a> (tested with version <code>5.3.0</code>).</p>
+</div>
+<div class="paragraph">
+<p>In your build configuration, in the "Post-build Actions" section, add a "Record compiler warnings and static analysis results" item:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="jenkins_build_configure.png" alt="Record compiler warnings and static analysis results configuration"></span></p>
+</div>
+<div class="paragraph">
+<p>Configure the item with following values:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tool: <code>Warnings Plugin Native Format</code></p>
+</li>
+<li>
+<p>Report File Pattern: <code>target/htmlchecker-report.xml</code> (example value, must match with the output file created when you run the tool)</p>
+</li>
+<li>
+<p>Custom ID: <code>htmlchecker</code> (optional)</p>
+</li>
+<li>
+<p>Custom Name: <code>HTML Checker</code> (optional)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here the same configuration as Jenkins pipeline script:</p>
+</div>
+<div class="listingblock">
+<div class="title">Jenkins pipeline syntax</div>
+<div class="content">
+<pre>recordIssues(tools: [issues(id: 'htmlchecker', name: 'HTML Checker', pattern: 'target/htmlchecker-report.xml')])</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="get-the-sources"><a class="anchor" href="#get-the-sources"></a>Get the sources</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -909,7 +953,7 @@ Exit Status:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-07-31 13:02:12 CEST
+Last updated 2019-09-03 21:48:00 CEST
 </div>
 </div>
 </body>
