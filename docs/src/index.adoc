@@ -120,6 +120,29 @@ Here is the complete list of options:
 include::../../htmlchecker-cli/src/test/resources/htmlchecker-help.txt[]
 ----
 
+== Jenkins integration
+
+With version `1.2.0` and newer a new export format is available: `jenkins-xml`
+The generated XML file can be parsed by Jenkins using the link:https://wiki.jenkins.io/x/1YTeCQ[Warnings Next Generation Plugin] (tested with version `5.3.0`).
+
+In your build configuration, in the "Post-build Actions" section, add a "Record compiler warnings and static analysis results" item:
+
+image:jenkins_build_configure.png[Record compiler warnings and static analysis results configuration]
+
+Configure the item with following values:
+
+* Tool: `Warnings Plugin Native Format`
+* Report File Pattern: `target/htmlchecker-report.xml` (example value, must match with the output file created when you run the tool)
+* Custom ID: `htmlchecker` (optional)
+* Custom Name: `HTML Checker` (optional)
+
+Here the same configuration as Jenkins pipeline script:
+
+.Jenkins pipeline syntax
+----
+recordIssues(tools: [issues(id: 'htmlchecker', name: 'HTML Checker', pattern: 'target/htmlchecker-report.xml')])
+----
+
 == Get the sources
 
 The project is hosted on GitHub: link:{projectpage}[{git-repository}]
