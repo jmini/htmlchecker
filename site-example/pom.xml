@@ -13,7 +13,6 @@
   <properties>
     <site.location>${project.basedir}${file.separator}src${file.separator}main${file.separator}resources${file.separator}site</site.location>
     <site.github>https://github.com/jmini/htmlchecker/blob/master/site-example/src/main/resources/site/</site.github>
-    <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
   </properties>
   <build>
     <plugins>
