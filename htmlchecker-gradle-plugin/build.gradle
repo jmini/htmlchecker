@@ -1,0 +1,173 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'signing'
+    id 'maven-publish'
+    id 'de.marcphilipp.nexus-publish' version '0.3.0'
+    id 'io.codearte.nexus-staging' version '0.21.0'
+}
+
+wrapper {
+    gradleVersion = '5.6.2'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    classifier = 'javadoc'
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+signing {
+    useGpgCmd()
+    sign configurations.archives
+}
+
+tasks.withType(Sign) {
+    onlyIf {
+        project.hasProperty('signing.gnupg.keyName')
+    }
+}
+
+group = 'fr.jmini.htmlchecker'
+
+dependencies {
+    implementation 'fr.jmini.htmlchecker:htmlchecker-core:1.2.1'
+    implementation 'com.selesse:jxlint-gradle:2.2.0'
+    testImplementation 'junit:junit:4.12'
+}
+
+gradlePlugin {
+    // Define the plugin
+    plugins {
+        htmlchecker {
+            id = 'fr.jmini.htmlchecker'
+            implementationClass = 'fr.jmini.htmlchecker.gradle.HtmlcheckerGradlePlugin'
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+                artifact sourcesJar
+                artifact javadocJar
+            if(project.hasProperty('signing.gnupg.keyName')) {
+
+                project.tasks.signArchives.signatureFiles.each {
+                    artifact(it) {
+                        def matcher = it.file =~ /-(sources|javadoc)\.jar\.asc$/
+                        if (matcher.find()) {
+                            classifier = matcher.group(1)
+                        } else {
+                            classifier = null
+                        }
+                        extension = 'jar.asc'
+                    }
+                }
+            }
+        }
+    }
+    afterEvaluate {
+        publications {
+            withType(MavenPublication) {
+                pom {
+                    inceptionYear = "2019"
+                    url = 'https://' + "$githubRepositoryOwner" + '.github.io/' + "$githubRepositoryName" + '/'
+                    licenses {
+                        license {
+                            name = 'Eclipse Public License - v 2.0'
+                            url = 'https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.html'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'jmini'
+                            name = 'Jeremie Bresson'
+                            email = 'dev@jmini.fr'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:https://github.com/' + "$githubRepositoryOwner" + '/' + "$githubRepositoryName" + '.git'
+                        developerConnection = 'scm:git:https://github.com/' + "$githubRepositoryOwner" + '/' + "$githubRepositoryName" + '.git'
+                        url = 'https://github.com/' + "$githubRepositoryOwner" + '/' + "$githubRepositoryName" + '/'
+                    }
+                }
+            }
+            pluginMaven {
+                pom {
+                    name = 'Htmlchecker gradle-plugin'
+                    packaging = 'jar'
+                    description = 'Gradle plugin for htmlchecker'
+                }
+                if(project.hasProperty('signing.gnupg.keyName')) {
+                    pom.withXml {
+                        def pomFile = file("${project.buildDir}/generated-pom.xml")
+                        writeTo(pomFile)
+                        def pomAscFile = signing.sign(pomFile).signatureFiles[0]
+                        artifact(pomAscFile) {
+                            classifier = null
+                            extension = 'pom.asc'
+                        }
+                        pomFile.delete()
+                    }
+                }
+            }
+            htmlcheckerPluginMarkerMaven {
+                pom {
+                    name = 'Htmlchecker gradle-plugin marker'
+                    description = 'Marker artifact for the Htmlchecker gradle-plugin'
+                }
+                if(project.hasProperty('signing.gnupg.keyName')) {
+                    pom.withXml {
+                        def pomFile = file("${project.buildDir}/generated-marker-pom.xml")
+                        writeTo(pomFile)
+                        def pomAscFile = signing.sign(pomFile).signatureFiles[0]
+                        artifact(pomAscFile) {
+                            classifier = null
+                            extension = 'pom.asc'
+                        }
+                        pomFile.delete()
+                    }
+                }
+            }
+        }
+    }
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            username = project.findProperty('sonatypeUser') ?: ''
+            password = project.findProperty('sonatypePassword') ?: ''
+        }
+    }
+}
+
+nexusStaging {
+    packageGroup = 'fr.jmini'
+    username = project.findProperty('sonatypeUser') ?: ''
+    password = project.findProperty('sonatypePassword') ?: ''
+}
+
+model {
+    tasks.publishMavenJavaPublicationToMavenLocal {
+        dependsOn(project.tasks.signArchives)
+    }
+    tasks.publishMavenJavaPublicationToSonatypeRepository {
+        dependsOn(project.tasks.signArchives)
+    }
+}

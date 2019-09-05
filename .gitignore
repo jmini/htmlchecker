@@ -33,6 +33,7 @@ build/
 
 # Package Files #
 *.jar
+!htmlchecker-gradle-plugin/gradle/wrapper/gradle-wrapper.jar
 *.war
 *.ear
 *.zip
