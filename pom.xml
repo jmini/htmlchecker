@@ -3,7 +3,7 @@
 
     <groupId>fr.jmini.htmlchecker</groupId>
     <artifactId>root</artifactId>
-    <version>1.2.2</version>
+    <version>1.2.3-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <url>https://jmini.github.io/htmlchecker/</url>
