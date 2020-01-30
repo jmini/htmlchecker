@@ -56,6 +56,14 @@ public class LocalScriptTagRuleTest extends AbstractLocalRuleTest<LocalScriptTag
     assertThat(lintErrors).hasSize(0);
   }
 
+  @Test
+  public void testLinkWithWhitespace() throws Exception {
+    setupRule();
+    File file = new File(Resources.getResource("whitespace-script.html").getPath());
+    List<LintError> lintErrors = rule.getLintErrors(file);
+    assertThat(lintErrors).hasSize(0);
+  }
+
   @Override
   protected LocalScriptTagRule newRule() {
     return new LocalScriptTagRule();

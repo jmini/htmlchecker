@@ -46,7 +46,8 @@ public abstract class AbstractLocalRule extends AbstractJerichoRule {
   }
 
   protected String computeLocalPath(Element element) {
-    return element.getAttributeValue(attributeName);
+    String attribute = element.getAttributeValue(attributeName);
+    return HtmlUtility.urlDecode(attribute);
   }
 
   protected boolean isLocalPathIgnored(String localPath) {

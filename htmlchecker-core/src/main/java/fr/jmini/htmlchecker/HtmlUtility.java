@@ -1,6 +1,8 @@
 package fr.jmini.htmlchecker;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -82,6 +84,18 @@ public final class HtmlUtility {
       return path.substring(0, index);
     }
     return path;
+  }
+
+  public static String urlDecode(String value) {
+    if (value == null) {
+      return null;
+    }
+    try {
+      return URLDecoder.decode(value, "UTF-8");
+    }
+    catch (UnsupportedEncodingException e) {
+      throw new IllegalStateException("Could not decode the value: " + value, e);
+    }
   }
 
   private HtmlUtility() {

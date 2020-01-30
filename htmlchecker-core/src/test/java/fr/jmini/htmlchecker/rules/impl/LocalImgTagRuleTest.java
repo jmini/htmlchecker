@@ -56,6 +56,14 @@ public class LocalImgTagRuleTest extends AbstractLocalRuleTest<LocalImgTagRule> 
     assertThat(lintErrors).hasSize(0);
   }
 
+  @Test
+  public void testLinkWithWhitespace() throws Exception {
+    setupRule();
+    File file = new File(Resources.getResource("whitespace-img.html").getPath());
+    List<LintError> lintErrors = rule.getLintErrors(file);
+    assertThat(lintErrors).hasSize(0);
+  }
+
   @Override
   protected LocalImgTagRule newRule() {
     return new LocalImgTagRule();

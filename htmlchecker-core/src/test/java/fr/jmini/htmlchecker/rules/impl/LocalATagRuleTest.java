@@ -95,6 +95,15 @@ public class LocalATagRuleTest extends AbstractLocalRuleTest<LocalATagRule> {
     }
   }
 
+  @Test
+  public void testLinkWithWhitespace() throws Exception {
+    setupRule();
+    File file = new File(Resources.getResource("whitespace-a.html").getPath());
+    List<LintError> lintErrors = rule.getLintErrors(file);
+    assertThat(lintErrors).hasSize(1);
+    assertLintError(lintErrors.get(0), "whitespace-a.html", 11, "Anchor 'bottom' referenced in the 'href' attribute in the 'a' tag is missing in file  'dir3/my page.html' (relative to 'whitespace-a.html')");
+  }
+
   @Override
   protected LocalATagRule newRule() {
     return new LocalATagRule();

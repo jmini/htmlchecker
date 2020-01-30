@@ -112,6 +112,11 @@ public class HtmlUtilityTest {
     assertEquals("", HtmlUtility.removeAnchorAndQuery("?id=1"));
     assertEquals("", HtmlUtility.removeAnchorAndQuery("#test"));
     assertEquals(null, HtmlUtility.removeAnchorAndQuery(null));
+  }
 
+  @Test
+  public void testUrlDecode() throws Exception {
+    assertEquals("my file.html", HtmlUtility.urlDecode("my%20file.html"));
+    assertEquals(null, HtmlUtility.urlDecode(null));
   }
 }

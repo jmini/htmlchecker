@@ -63,7 +63,8 @@ public class LocalATagRule extends AbstractLocalRule {
         fileNameSupplier = () -> " '" + file.getName() + "'";
       }
       else {
-        File otherFile = computeOtherFile(file, href.substring(0, index));
+        String path = HtmlUtility.urlDecode(href.substring(0, index));
+        File otherFile = computeOtherFile(file, path);
         fileNameSupplier = () -> " '" + HtmlUtility.computeRelPath(file, otherFile) + otherFile.getName() + "' (relative to '" + file.getName() + "')";
         try {
           source = new Source(otherFile);
