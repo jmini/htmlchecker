@@ -155,7 +155,7 @@ The project is built with maven.
 mvn install
 ----
 
-In order to build a release (push a tag to github, upload the binaries to bintray) just run:
+In order to build a release (push a tag to github, upload the binaries to maven central) just run:
 
 ----
 mvn -Prelease release:prepare
