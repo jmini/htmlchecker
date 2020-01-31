@@ -44,7 +44,7 @@ tasks.withType(Sign) {
 group = 'fr.jmini.htmlchecker'
 
 dependencies {
-    implementation 'fr.jmini.htmlchecker:htmlchecker-core:1.2.1'
+    implementation 'fr.jmini.htmlchecker:htmlchecker-core:1.2.2'
     implementation 'com.selesse:jxlint-gradle:2.2.0'
     testImplementation 'junit:junit:4.12'
 }
