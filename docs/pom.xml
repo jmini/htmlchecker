@@ -6,19 +6,6 @@
     <version>1.2.3-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>bintray.jmini.maven</id>
-            <url>http://dl.bintray.com/jmini/maven/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <asciidoctor.maven.plugin.version>1.5.5</asciidoctor.maven.plugin.version>
@@ -65,8 +52,8 @@
                         <version>${asciidoctorj.version}</version>
                     </dependency>
                     <dependency>
-                        <groupId>com.bsiag.asciidoctorj</groupId>
-                        <artifactId>gh-edit</artifactId>
+                        <groupId>fr.jmini.asciidoctorj</groupId>
+                        <artifactId>git-link</artifactId>
                         <version>${asciidoctorj.gh-edit.version}</version>
                     </dependency>
                 </dependencies>
