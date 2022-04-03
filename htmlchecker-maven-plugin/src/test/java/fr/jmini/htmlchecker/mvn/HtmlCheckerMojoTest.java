@@ -127,7 +127,7 @@ public class HtmlCheckerMojoTest {
     }
 
     result
-        .assertLogText("running 'htmlchecker' version '1.2.3'")
+        .assertLogText("running 'htmlchecker' version '1.2.4'")
         .assertLogText("BUILD SUCCESS");
 
     File file = new File(basedir, "target/report_" + pomFolderName + ".xml");
