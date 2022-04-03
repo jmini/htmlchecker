@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,29 +15,38 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.testing.AbstractMojoTestCase;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.google.common.io.Files;
+import io.takari.maven.testing.TestResources;
+import io.takari.maven.testing.executor.MavenExecutionResult;
+import io.takari.maven.testing.executor.MavenRuntime;
+import io.takari.maven.testing.executor.MavenRuntime.MavenRuntimeBuilder;
+import io.takari.maven.testing.executor.MavenVersions;
+import io.takari.maven.testing.executor.junit.MavenJUnitTestRunner;
 
-public class HtmlCheckerMojoTest extends AbstractMojoTestCase {
-  protected File tempDirectory;
+@RunWith(MavenJUnitTestRunner.class)
+@MavenVersions({"3.6.3"})
+public class HtmlCheckerMojoTest {
 
-  @Override
-  protected void setUp() throws Exception {
-    super.setUp();
-    tempDirectory = Files.createTempDir();
-    tempDirectory.deleteOnExit();
+  @Rule
+  public final TestResources resources = new TestResources("src/test/resources/poms", "build/maven-work");
+
+  private final MavenRuntime maven;
+
+  public HtmlCheckerMojoTest(MavenRuntimeBuilder builder) throws Exception {
+    this.maven = builder.build();
   }
 
+  @Test
   public void testMinimal() throws Exception {
-    File createdFile = executeMojo("target/test-classes/poms/pom-minimal.xml");
+    File createdFile = executeMojo("minimal");
     NodeList nodeList = loadIssuesFromXml(createdFile);
     assertThat(nodeList.getLength()).isEqualTo(8);
     List<XmlIssue> issueList = convertToList(nodeList);
@@ -51,8 +62,9 @@ public class HtmlCheckerMojoTest extends AbstractMojoTestCase {
     assertThat(itemsGroupedByName.get("LOCAL_IMG_TAG_RULE")).hasSize(1);
   }
 
+  @Test
   public void testCheckOnlyRules() throws Exception {
-    File createdFile = executeMojo("target/test-classes/poms/pom-check.xml");
+    File createdFile = executeMojo("check");
     NodeList nodeList = loadIssuesFromXml(createdFile);
     assertThat(nodeList.getLength()).isEqualTo(1);
     List<XmlIssue> issueList = convertToList(nodeList);
@@ -60,8 +72,9 @@ public class HtmlCheckerMojoTest extends AbstractMojoTestCase {
     assertThat(issueList.get(0).getName()).isEqualTo("LOCAL_IMG_TAG_RULE");
   }
 
+  @Test
   public void testDisableRules() throws Exception {
-    File createdFile = executeMojo("target/test-classes/poms/pom-disable.xml");
+    File createdFile = executeMojo("disable");
     NodeList nodeList = loadIssuesFromXml(createdFile);
     assertThat(nodeList.getLength()).isEqualTo(3);
     List<XmlIssue> issueList = convertToList(nodeList);
@@ -101,19 +114,25 @@ public class HtmlCheckerMojoTest extends AbstractMojoTestCase {
     return null;
   }
 
-  private File executeMojo(String pomRelativePath) throws Exception, IllegalAccessException, MojoExecutionException, MojoFailureException {
-    File testPom = new File(getBasedir(), pomRelativePath);
-    HtmlCheckerMojo mojo = (HtmlCheckerMojo) lookupMojo("generate-report", testPom);
-    assertNotNull(mojo);
+  private File executeMojo(String pomFolderName) throws IOException, Exception {
+    Path siteFolder = Paths.get("../site-example/src/main/resources/site/");
+    assertThat(siteFolder).isDirectory();
 
-    File ouputFile = (File) getVariableValueFromObject(mojo, HtmlCheckerMojo.OUTPUT_FILE);
-    ouputFile.delete();
-    assertFalse(ouputFile.exists());
+    File basedir = resources.getBasedir(pomFolderName);
+    MavenExecutionResult result = maven.forProject(basedir)
+        .execute("verify", "-X", "-Dit.siteFolder=" + siteFolder.normalize().toAbsolutePath());
 
-    mojo.execute();
+    for (String l : result.getLog()) {
+      System.out.println(l);
+    }
 
-    assertTrue(ouputFile.exists());
-    return ouputFile;
+    result
+        .assertLogText("running 'htmlchecker' version '1.2.3'")
+        .assertLogText("BUILD SUCCESS");
+
+    File file = new File(basedir, "target/report_" + pomFolderName + ".xml");
+    assertThat(file).isFile();
+    return file;
   }
 
   private NodeList loadIssuesFromXml(File createdFile) throws ParserConfigurationException, SAXException, IOException {
@@ -124,5 +143,4 @@ public class HtmlCheckerMojoTest extends AbstractMojoTestCase {
     NodeList nodeList = document.getElementsByTagName("issue");
     return nodeList;
   }
-
 }

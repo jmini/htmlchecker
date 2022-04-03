@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>tmp</groupId>
+  <artifactId>project-to-test</artifactId>
+  <version>0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>fr.jmini.htmlchecker</groupId>
+        <artifactId>htmlchecker-maven-plugin</artifactId>
+        <version>${it-plugin.version}</version>
+        <configuration>
+          <sourceDirectory>${it.siteFolder}</sourceDirectory>
+          <outputType>xml</outputType>
+          <outputFile>${project.build.directory}${file.separator}report_check.xml</outputFile>
+          <enableOnlyRules>
+            <rule>LOCAL_IMG_TAG_RULE</rule>
+          </enableOnlyRules>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>test</phase>
+            <goals>
+              <goal>generate-report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
