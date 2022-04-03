@@ -143,30 +143,71 @@ Here the same configuration as Jenkins pipeline script:
 recordIssues(tools: [issues(id: 'htmlchecker', name: 'HTML Checker', pattern: 'target/htmlchecker-report.xml')])
 ----
 
-== Get the sources
+== Source Code
 
 The project is hosted on GitHub: link:{projectpage}[{git-repository}]
 
 === Build
 
-The project is built with maven.
+This project is using gradle.
+
+Command to build the sources locally:
 
 ----
-mvn install
+./gradlew build
 ----
 
-In order to build a release (push a tag to github, upload the binaries to maven central) just run:
+Command to deploy to your local maven repository:
 
 ----
-mvn -Prelease release:prepare
+./gradlew publishToMavenLocal
 ----
 
-And then:
+Command to build the documentation page:
 
 ----
-mvn -Prelease release:perform
+./gradlew asciidoctor
 ----
 
+The output of this command is an HTML page located at `<git repo root>/build/docs/html5/index.html`.
+
+==== For project maintainers
+
+`signing.gnupg.keyName` and `signing.gnupg.passphrase` are expected to be set in your local `gradle.properties` file to be able to sign.
+`sonatypeUser` and `sonatypePassword` are expected to be set in order to be able to publish to a distant repository.
+
+Command to build and publish the result to maven central:
+
+----
+./gradlew publishToSonatype
+----
+
+Command to upload the documentation page on GitHub pages:
+
+----
+./gradlew gitPublishPush
+----
+
+Command to perform a release:
+
+----
+./gradlew release -Prelease.useAutomaticVersion=true
+----
+
+==== Using ssh-agent
+
+Some tasks requires pushing into the distant git repository (release task or updating the `gh-pages` branch).
+If they are failing with errors like this:
+----
+org.eclipse.jgit.api.errors.TransportException: ... Permission denied (publickey).
+---- 
+
+Then `ssh-agent` can be used.
+----
+eval `ssh-agent -s`
+ssh-add ~/.ssh/id_rsa
+----
+(link:https://superuser.com/a/990447/[source] for this approach)
 
 include::{github-readme}[tags=contact-section]
 
