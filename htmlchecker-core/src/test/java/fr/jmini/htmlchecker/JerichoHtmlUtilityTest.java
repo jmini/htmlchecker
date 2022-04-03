@@ -37,6 +37,18 @@ public class JerichoHtmlUtilityTest {
     assertEquals(false, JerichoHtmlUtility.containsElementWithId(source, "abc"));
   }
 
+  @Test
+  public void testDivIdWithSpecialChars() throws Exception {
+    Source source = new Source(createHtml("<div id=\"Foo&lt;Bar&gt;Foo\"><p>body</p></div>"));
+    assertEquals(true, JerichoHtmlUtility.containsElementWithId(source, "Foo<Bar>Foo"));
+  }
+
+  @Test
+  public void testANameWithSpecialChars() throws Exception {
+    Source source = new Source(createHtml("<p><a name=\"Foo&lt;Bar&gt;Foo\">Test</p>"));
+    assertEquals(true, JerichoHtmlUtility.containsElementWithId(source, "Foo<Bar>Foo"));
+  }
+
   private CharSequence createHtml(String body) {
     return "<html>\n" +
         "<head>\n" +

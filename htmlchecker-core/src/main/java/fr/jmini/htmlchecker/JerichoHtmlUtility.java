@@ -14,15 +14,23 @@ public final class JerichoHtmlUtility {
       throw new IllegalArgumentException("id can not be empty or null");
     }
     List<Element> allElements = source.getAllElements("id", id, true);
-    if (allElements.size() > 0) {
+    if (!allElements.isEmpty()) {
       return true;
     }
 
-    allElements = source.getAllElements(HTMLElementName.A);
-    Optional<Element> any = allElements.stream()
-        .filter(e -> id.equals(e.getAttributeValue("name")))
+    List<Element> allIdAttributes = source.getAllElements("id", null);
+    Optional<Element> anyWithIdValueMatching = allIdAttributes.stream()
+        .filter(e -> id.equals(HtmlUtility.urlDecode(e.getAttributeValue("id"))))
         .findAny();
-    return any.isPresent();
+    if (anyWithIdValueMatching.isPresent()) {
+      return true;
+    }
+
+    List<Element> allATags = source.getAllElements(HTMLElementName.A);
+    Optional<Element> anyWithNameAttributeMatching = allATags.stream()
+        .filter(e -> id.equals(HtmlUtility.urlDecode(e.getAttributeValue("name"))))
+        .findAny();
+    return anyWithNameAttributeMatching.isPresent();
   }
 
   private JerichoHtmlUtility() {
