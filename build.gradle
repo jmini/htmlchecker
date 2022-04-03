@@ -152,7 +152,7 @@ task releaseBuild {
             'checkLastVersionValue',
             'clean',
             'build',
-            'publish',
+            project.getTasksByName('publishToSonatype', true),
             'asciidoctor',
             'gitPublishPush'
     )
