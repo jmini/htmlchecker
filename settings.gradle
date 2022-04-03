@@ -1,0 +1,5 @@
+rootProject.name = 'htmlchecker'
+include(':htmlchecker-cli')
+include(':htmlchecker-core')
+include(':htmlchecker-maven-plugin')
+include(':htmlchecker-gradle-plugin')

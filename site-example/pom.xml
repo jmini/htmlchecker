@@ -1,13 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>fr.jmini.htmlchecker</groupId>
-    <artifactId>htmlchecker-parent</artifactId>
-    <version>1.2.3-SNAPSHOT</version>
-    <relativePath>../htmlchecker-parent</relativePath>
-  </parent>
+  <groupId>fr.jmini.htmlchecker</groupId>
   <artifactId>site-example</artifactId>
   <name>Htmlchecker usage example</name>
+  <version>1.0.0-SNAPSHOT</version>
   <description>Demo site to test htmlchecker</description>
 
   <properties>
@@ -16,7 +12,7 @@
   </properties>
   <build>
     <plugins>
-      <!--tag::plugin-usage[]-->
+      <!-- tag::plugin-usage[] -->
       <plugin>
         <groupId>fr.jmini.htmlchecker</groupId>
         <artifactId>htmlchecker-maven-plugin</artifactId>
@@ -37,7 +33,7 @@
           </execution>
         </executions>
       </plugin>
-      <!--end::plugin-usage[]-->
+      <!-- end::plugin-usage[] -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>

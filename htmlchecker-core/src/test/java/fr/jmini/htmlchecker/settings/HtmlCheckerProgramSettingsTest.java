@@ -8,8 +8,6 @@ import java.util.Properties;
 
 import org.junit.Test;
 
-import com.google.common.io.Resources;
-
 public class HtmlCheckerProgramSettingsTest {
 
   @Test
@@ -18,11 +16,11 @@ public class HtmlCheckerProgramSettingsTest {
 
     //Read expected version value from 'values.properties' file
     Properties properties = new Properties();
-    File file = new File(Resources.getResource("values.properties").getPath());
+    File file = new File("../gradle.properties");
     try (FileReader reader = new FileReader(file)) {
       properties.load(reader);
     }
-    String expectedVersion = properties.getProperty("version");
+    String expectedVersion = properties.getProperty("version").replace("-SNAPSHOT", "");
 
     assertThat(version).isEqualTo(expectedVersion);
   }
