@@ -7,6 +7,7 @@
   <description>Demo site to test htmlchecker</description>
 
   <properties>
+    <htmlchecker.version>1.2.3</htmlchecker.version>
     <site.location>${project.basedir}${file.separator}src${file.separator}main${file.separator}resources${file.separator}site</site.location>
     <site.github>https://github.com/jmini/htmlchecker/blob/master/site-example/src/main/resources/site/</site.github>
   </properties>
@@ -16,7 +17,7 @@
       <plugin>
         <groupId>fr.jmini.htmlchecker</groupId>
         <artifactId>htmlchecker-maven-plugin</artifactId>
-        <version>1.2.3-SNAPSHOT</version>
+        <version>${htmlchecker.version}</version>
         <executions>
           <execution>
             <id>generate-html-report</id>

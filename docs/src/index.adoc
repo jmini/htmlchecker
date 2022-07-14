@@ -63,12 +63,27 @@ See an example for the git-link:site-example[site-example] project: link:example
 
 Since version 1.2.0, a compiled version of the project is available on maven central.
 
-You might use maven or gradle to fetch the dependencies you need, depending on your use case.
-You can also directly use the maven plugin as step of your build.
+For the core library:
 
-For the command line tool, a zip file is also available: 
-link:https://repo1.maven.org/maven2/fr/jmini/htmlchecker/htmlchecker-cli/{project-version}/htmlchecker-cli-{project-version}-bin.zip[htmlchecker-cli-{project-version}-bin.zip].
-It contains all the requested dependencies in a `lib` subfolder and basic startup scripts.
+[source, xml, subs="verbatim,attributes"]
+.coordinates on maven central (xml notation)
+----
+<dependency>
+  <groupId>{maven-group-id}</groupId>
+  <artifactId>htmlchecker-core</artifactId>
+  <version>{last-stable-version}</version>
+</dependency>
+----
+
+An other interesting approach is to run the cli jar using link:https://www.jbang.dev/[Jbang] to take care of the classpath:
+
+[source, subs="verbatim,attributes"]
+.jbang command to start the cli
+----
+jbang run {maven-group-id}:htmlchecker-cli:{last-stable-version} --help
+----
+
+A maven plugin and a gradle plugin are available as well.
 
 == Run the tool
 

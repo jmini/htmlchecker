@@ -21,6 +21,8 @@ wrapper {
     gradleVersion = '7.3.3'
 }
 
+String groupId = 'fr.jmini.htmlchecker'
+
 subprojects {
     apply plugin: 'java'
     apply plugin: 'signing'
@@ -28,7 +30,7 @@ subprojects {
     apply plugin: 'de.marcphilipp.nexus-publish'
     apply plugin: 'maven-publish'
 
-    group = 'fr.jmini.htmlchecker'
+    group = groupId
 
     signing {
         useGpgCmd()
@@ -104,20 +106,21 @@ asciidoctor {
             include '*.png'
         }
     }
-    attributes = ['revdate'           : "${buildDate()}",
-                  'project-version'   : "$version",
-                  'artifacts-version' : "$lastVersion",
-                  'gh-repo-owner'     : "$githubRepositoryOwner",
-                  'gh-repo-name'      : "$githubRepositoryName",
-                  'source-highlighter': 'coderay',
-                  'imagesdir'         : '',
-                  'toc'               : 'left',
-                  'toclevels'         : '3',
-                  'icons'             : 'font',
-                  'sectanchors'       : 'true',
-                  'idprefix'          : '',
-                  'idseparator'       : '-',
-                  'docinfo1'          : 'true']
+    attributes = ['revdate'             : "${buildDate()}",
+                  'project-version'     : "$version",
+                  'maven-group-id'      : "$groupId",
+                  'last-stable-version' : "$lastVersion",
+                  'gh-repo-owner'       : "$githubRepositoryOwner",
+                  'gh-repo-name'        : "$githubRepositoryName",
+                  'source-highlighter'  : 'coderay',
+                  'imagesdir'           : '',
+                  'toc'                 : 'left',
+                  'toclevels'           : '3',
+                  'icons'               : 'font',
+                  'sectanchors'         : 'true',
+                  'idprefix'            : '',
+                  'idseparator'         : '-',
+                  'docinfo1'            : 'true']
     repositories {
         mavenCentral()
     }
